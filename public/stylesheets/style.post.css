@@ -1,0 +1,163 @@
+.Nav-body {
+  width: 1440px;
+  height: 70px;
+  background-color: #ffffff;
+}
+
+.Post-Button-Body {
+  width: 140px;
+  height: 33px;
+  border-radius: 2px;
+  background-color: #9b9b9b;
+  text-align: center;
+  font-family: Assistant;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+}
+
+.Bitmap {
+  width: 940px;
+  height: 297px;
+}
+
+.Header {
+  width: 587.4px;
+  height: 104px;
+  font-family: Assistant;
+  font-size: 40px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.HeaderInfo {
+  width: 419.4px;
+  height: 52px;
+  font-family: Assistant;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.Post-Body {
+  width: 616px;
+  height: 100px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #d4d4d4;
+}
+
+.InfoBox {
+  height: 172px;
+  background-color: #575757;
+  box-shadow: 0 0 4px 0 #575757;
+}
+
+.Bottom-Break {
+  width: 616px;
+  height: 3px;
+  border: solid 1px #d4d4d4;
+}
+
+.endPost {
+  width: 616px;
+  height: 38px;
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #737373;
+}
+
+.Options {
+  height: 19px;
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #737373;
+}
+
+.Skillset-Body {
+  width: 59px;
+  height: 30px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  border: solid 1px #e7aa3b;
+  text-align: center;
+  font-family: Assistant;
+  font-size: 13px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #e7aa3b;
+}
+
+.Number-Oval {
+  width: 18px;
+  height: 18px;
+  border: solid 1px #737373;
+}
+
+.Upload-Challenge {
+  width: 300px;
+  height: 30px;
+  border-radius: 20px;
+  border: solid 1px #925cc2;
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #925cc2;
+}
+
+.Preview {
+  width: 300px;
+  height: 30px;
+  border-radius: 20px;
+  border: solid 1px #19aae5;
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #19aae5;
+}
+
+.Remaining {
+  width: 300px;
+  height: 30px;
+  border-radius: 20px;
+  border: solid 1px #9b9b9b;
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #9b9b9b;
+}
+
+.Links {
+  height: 18px;
+  font-family: Assistant;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #737373;
+}
