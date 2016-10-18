@@ -1,0 +1,20 @@
+{
+  "name": "intrn.co",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Stephen Knutter <stephen.knutter@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jaimielogan/intrn.co",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

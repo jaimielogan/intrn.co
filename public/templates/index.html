@@ -1,0 +1,79 @@
+<div>
+  <strong>Roles:</strong>
+  <label for="design">
+    Design
+    <input id="design" type="checkbox" ng-click="includeRole('Design')" />
+  </label>
+
+  <label for="engineering">
+    Engineering
+    <input id="engineering" type="checkbox" ng-click="includeRole('Engineering')" />
+  </label>
+
+  <label for="businessdev">
+    Business Dev
+    <input id="businessdev" type="checkbox" ng-click="includeRole('Business Dev')" />
+  </label>
+
+  <label for="growth">
+    Growth
+    <input id="growth" type="checkbox" ng-click="includeRole('Growth')" />
+  </label>
+</div>
+
+<div>
+  <strong>Location:</strong>
+  <label for="denver">
+    Denver
+    <input id="denver" type="checkbox" ng-click="includeRole('Denver')" />
+  </label>
+  <label for="boulder">
+    Boulder
+    <input id="boulder" type="checkbox" ng-click="includeRole('Boulder')" />
+  </label>
+  <label for="ftcollins">
+    Fort Collins
+    <input id="ftcollins" type="checkbox" ng-click="includeRole('Fort Collins')" />
+  </label>
+  <label for="coloradosprings">
+    Colorado Springs
+    <input id="coloradosprings" type="checkbox" ng-click="includeRole('Colorado Springs')" />
+  </label>
+</div>
+
+<div>
+  <strong>Job Type:</strong>
+  <label for="contract">
+    Contract
+    <input id="contract" type="checkbox" ng-click="includeRole('Contract')" />
+  </label>
+  <label for="parttime">
+    Part Time
+    <input id="parttime" type="checkbox" ng-click="includeRole('Part Time')" />
+  </label>
+  <label for="fulltime">
+    Full Time
+    <input id="fulltime" type="checkbox" ng-click="includeRole('Full Time')" />
+  </label>
+  <label for="brandambassador">
+    Brand Ambassador
+    <input id="brandambassador" type="checkbox" ng-click="includeRole('Contract')" />
+  </label>
+</div>
+
+<div ng-repeat="post in postData | filter: roleFilter | filter: locationFilter | filter: typeFilter">
+  <div style="padding: 10px 0">
+    <div style="padding: 5px 0">
+      {{ post.description }}
+    </div>
+    <div style="padding: 3px 0">
+      {{ post.role }}
+    </div>
+    <div style="padding: 3px 0">
+      {{ post.type }}
+    </div>
+    <div style="padding: 3px 0">
+      {{ post.location }}
+    </div>
+  </div>
+</div>
