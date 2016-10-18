@@ -42,32 +42,35 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
 
     $scope.roleFilter = function(post) {
       if ($scope.roleIncludes.length > 0) {
-        if ($.inArray(post.role, $scope.roleIncludes) < 0) return;
+        if ( ($.inArray(post.role, $scope.roleIncludes) < 0) &&
+            ($.inArray(post.location, $scope.roleIncludes) < 0) &&
+            ($.inArray(post.type, $scope.roleIncludes))) {
+          return;
+        }
       };
       console.log($scope.roleIncludes);
       return post;
     };
 
-    $scope.locationFilter = function(post) {
-      if ($scope.roleIncludes.length > 0) {
-        if ( ($.inArray(post.location, $scope.roleIncludes) < 0) ||
-          ($.inArray(post.role, $scope.roleIncludes) < 0) ||
-          ($.inArray(post.role, $scope.location) < 0) ){
-            return;
-          }
-      };
-      console.log($scope.roleIncludes);
-      return post;
-    };
+    // $scope.locationFilter = function(post) {
+    //   if ($scope.roleIncludes.length > 0) {
+    //     if ( ($.inArray(post.location, $scope.roleIncludes) < 0) &&
+    //       ($.inArray(post.role, $scope.roleIncludes) < 0) ) {
+    //         return;
+    //       }
+    //   };
+    //   console.log($scope.roleIncludes);
+    //   return post;
+    // };
 
-     $scope.typeFilter = function(post) {
-       if ($scope.roleIncludes.length > 0) {
-         if ( ($.inArray(post.type, $scope.roleIncludes) < 0) ||
-          ($.inArray())) return;
-       };
-       console.log($scope.roleIncludes);
-       return post;
-     };
+    //  $scope.typeFilter = function(post) {
+    //    if ($scope.roleIncludes.length > 0) {
+    //      if ( ($.inArray(post.type, $scope.roleIncludes) < 0) ||
+    //       ($.inArray())) return;
+    //    };
+    //    console.log($scope.roleIncludes);
+    //    return post;
+    //  };
   });
 }]);
 
