@@ -1,0 +1,115 @@
+.Nav-body {
+  width: 1440px;
+  height: 70px;
+  background-color: #ffffff;
+}
+
+.Post-Button-Body {
+  width: 140px;
+  height: 33px;
+  border-radius: 2px;
+  background-color: #9b9b9b;
+  text-align: center;
+  font-family: Assistant;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+}
+
+.Bitmap {
+  width: 940px;
+  height: 297px;
+}
+
+.Header {
+  width: 587.4px;
+  height: 104px;
+  font-family: Assistant;
+  font-size: 40px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.HeaderInfo {
+  width: 419.4px;
+  height: 52px;
+  font-family: Assistant;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.Post-Body {
+  width: 616px;
+  height: 100px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #d4d4d4;
+}
+
+.Bottom-Break {
+  width: 616px;
+  height: 3px;
+  border: solid 1px #d4d4d4;
+}
+
+.endPost {
+  width: 616px;
+  height: 38px;
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #737373;
+}
+
+.Options {
+  height: 19px;
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #737373;
+}
+
+.Skillset-Body {
+  width: 59px;
+  height: 30px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  border: solid 1px #e7aa3b;
+  text-align: center;
+  font-family: Assistant;
+  font-size: 13px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #e7aa3b;
+}
+
+.Ad {
+  width: 300px;
+  height: 215px;
+  background-color: #d8d8d8;
+}
+
+.Links {
+  height: 18px;
+  font-family: Assistant;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #737373;
+}
