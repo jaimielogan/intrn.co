@@ -7,19 +7,21 @@
 
   <div class="row">
     <div class="col-md-8">
-      <div ng-repeat="post in postData | filter: roleFilter">
-        <div style="padding: 10px 0">
-          <div style="padding: 5px 0">
-            {{ post.description }}
-          </div>
-          <div style="padding: 3px 0">
+      <div ng-repeat="post in postData | filter: roleFilter" class="Post-Body">
+        <div>
+          <div class="role" ng-class="{'design': post.role == 'Design', 'growth': post.role == 'Growth', 'businessDev': post.role == 'Business Dev', 'engineering': post.role == 'Engineering'}">
             {{ post.role }}
           </div>
-          <div style="padding: 3px 0">
-            {{ post.type }}
+          <div>
+            {{ post.title }}
           </div>
-          <div style="padding: 3px 0">
-            {{ post.location }}
+          <div>
+            {{ post.location }} &bull;
+            {{ post.type }} &bull;
+            {{ post.updated_at }} &bull;
+            {{ post.name }} &bull;
+            {{ post.views }} Views &bull;
+            {{ post.applicants }} Applicants
           </div>
         </div>
       </div>

@@ -29,6 +29,7 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
   posts.getAllPosts(function(data) {
     // console.log(data);
     $scope.postData = data;
+    console.log(data);
     $scope.roleIncludes = [];
 
     $scope.includeRole = function(role) {
@@ -47,7 +48,7 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
             ($.inArray(post.type, $scope.roleIncludes))) {
           return;
         }
-      };
+      }
       // console.log($scope.roleIncludes);
       return post;
     };
@@ -81,7 +82,7 @@ app.factory('posts', ['$http', function($http) {
     $http.get('/posts').success(function(data) {
       cb(data);
     });
-  }
+  };
 
   return posts;
 }]);
