@@ -1,12 +1,12 @@
+body{
+  background-color: #f9f9f9;
+}
+
 .Nav-body {
-  /*width: 1440px;
-  height: 70px;*/
   background-color: #ffffff;
 }
 
 .Post-Button-Body {
-  /*width: 140px;
-  height: 33px;*/
   border-radius: 2px;
   background-color: #9b9b9b;
   text-align: center;
@@ -46,17 +46,152 @@
 }
 
 .Post-Body {
-  width: 616px;
-  height: 100px;
+  max-width: 616px;
+  min-height: 100px;
   border-radius: 4px;
   background-color: #ffffff;
   border: solid 1px #d4d4d4;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 
-.Bottom-Break {
-  width: 616px;
-  height: 3px;
-  border: solid 1px #d4d4d4;
+.role {
+  line-height: 18px;
+  font-family: Assistant;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  position: relative;
+}
+
+.arrow{
+  position:absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.arrow:hover{
+  cursor: pointer;
+}
+
+.design{
+  color: #e7aa3b;
+}
+
+.growth {
+  color: #19aae5;
+}
+
+.businessDev{
+  color: #925cc2;
+}
+
+.engineering{
+  color: #44d0a5;
+}
+
+.oval{
+  border-radius: 100%;
+  display: inline-block;
+  font-size: 14px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+}
+
+.design>.oval{
+  border: solid 1px #e7aa3b;
+}
+
+.growth>.oval{
+  border: solid 1px #19aae5;
+}
+
+.businessDev>.oval{
+  border: solid 1px #925cc2;
+}
+
+.engineering>.oval{
+  border: solid 1px #44d0a5;
+}
+
+.cardWrapper{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.postTitle{
+  font-family: Assistant;
+  font-size: 27px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  color: #575757;
+}
+
+.postInfo{
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #9b9b9b;
+}
+
+.detailHeader{
+  font-family: Assistant;
+  font-size: 17px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #737373;
+}
+
+.postDetail{
+  border-top: 1px solid #DCDCDC;
+  margin: 15px 20px 0 20px;
+}
+
+.detailContent{
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #575757;
+}
+
+.applyButtons{
+  float:right;
+}
+
+.buttons{
+  width: 156px;
+  height: 30px;
+  border-radius: 20px;
+  color: white;
+  margin-left: 5px;
+}
+
+.designButton{
+  background-color: #e7aa3b;
+  border: solid 1px #e7aa3b;
+}
+
+.growthButton{
+  background-color: #19aae5;
+  border: solid 1px #19aae5;
+}
+
+.businessDevButton{
+  background-color: #925cc2;
+  border: solid 1px #925cc2;
+}
+
+.engineeringButton{
+  background-color: #44d0a5;
+  border: solid 1px #44d0a5;
 }
 
 .endPost {

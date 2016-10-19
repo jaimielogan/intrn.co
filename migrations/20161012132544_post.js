@@ -2,6 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('posts', function(table){
     table.increments();
+    table.string('title');
     table.integer('role_id').references('id').inTable('roles');
     table.integer('location_id').references('id').inTable('locations');
     table.integer('type_id').references('id').inTable('types');
