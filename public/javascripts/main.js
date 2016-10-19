@@ -24,7 +24,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
   }]);
 
 app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
+  $scope.view = {};
   $scope.post = posts.posts;
+  $scope.view.viewDetails = [];
+
+  $scope.toggleDetails = function(postID){
+    $scope.view.viewDetails[postID] = !$scope.view.viewDetails[postID];
+    console.log($scope.view.viewDetails[postID]);
+    console.log(postID);
+  };
 
   posts.getAllPosts(function(data) {
     // console.log(data);
