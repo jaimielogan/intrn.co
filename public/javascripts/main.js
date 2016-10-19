@@ -27,7 +27,7 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
   $scope.post = posts.posts;
 
   posts.getAllPosts(function(data) {
-    console.log(data);
+    // console.log(data);
     $scope.postData = data;
     $scope.roleIncludes = [];
 
@@ -43,12 +43,12 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
     $scope.roleFilter = function(post) {
       if ($scope.roleIncludes.length > 0) {
         if ( ($.inArray(post.role, $scope.roleIncludes) < 0) &&
-            ($.inArray(post.location, $scope.roleIncludes) < 0) &&
+            ($.inArray(post.location, $scope.roleIncludes) < 0)
             ($.inArray(post.type, $scope.roleIncludes))) {
           return;
         }
       };
-      console.log($scope.roleIncludes);
+      // console.log($scope.roleIncludes);
       return post;
     };
 
