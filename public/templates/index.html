@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div ng-repeat="post in postData | filter: roleFilter" class="Post-Body clearfix">
         <div>
           <div class="role" ng-class="{'design': post.role == 'Design', 'growth': post.role == 'Growth', 'businessDev': post.role == 'Business Dev', 'engineering': post.role == 'Engineering'}">
@@ -58,85 +58,53 @@
           </div>
         </div>
       </div>
+
+      <div class="endPost">
+        That's all of the postings we have. Every posting is only up for 90 days, so be sure to apply for
+        the ones you're qulified for. Otherwise, check back later for more!
+      </div>
     </div>
 
-    <div class="col-md-4">
-      <div>
-        <div class="roleHeader">
-          <strong>Roles:</strong>
-        </div>
-        <div class="selections">
-          <label for="design">
-            Design
-            <input id="design" type="checkbox" ng-click="includeRole('Design')" />
-          </label>
+    <div class="col-md-4 col-md-offset-1">
 
-          <label for="engineering">
-            Engineering
-            <input id="engineering" type="checkbox" ng-click="includeRole('Engineering')" />
-          </label>
-
-          <label for="businessdev">
-            Business Dev
-            <input id="businessdev" type="checkbox" ng-click="includeRole('Business Dev')" />
-          </label>
-
-          <label for="growth">
-            Growth
-            <input id="growth" type="checkbox" ng-click="includeRole('Growth')" />
-          </label>
-
-        </div>
-
-      </div>
-
-      <div>
-        <div class="roleHeader">
-          <strong>Location:</strong>
-        </div>
-
-        <div class="selections">
-          <label for="denver">
-            Denver
-            <input id="denver" type="checkbox" ng-click="includeRole('Denver')" />
-          </label>
-          <label for="boulder">
-            Boulder
-            <input id="boulder" type="checkbox" ng-click="includeRole('Boulder')" />
-          </label>
-          <label for="ftcollins">
-            Fort Collins
-            <input id="ftcollins" type="checkbox" ng-click="includeRole('Fort Collins')" />
-          </label>
-          <label for="coloradosprings">
-            Colorado Springs
-            <input id="coloradosprings" type="checkbox" ng-click="includeRole('Colorado Springs')" />
-          </label>
+      <div class="side-wrap">
+        <h3 class="role role-side">Roles</h3>
+        <div class="row">
+          <span ng-click="includeRole('Design')" ng-class="{'selected': isSelected[0]['Design']}" class="Skillset-Body design">Design</span>
+          <span ng-click="includeRole('Engineering')" ng-class="{'selected': isSelected[0]['Engineering']}" class="Skillset-Body engineering">Engineering</span>
+          <span ng-click="includeRole('Business Dev')" ng-class="{'selected': isSelected[0]['BusinessDev']}" class="Skillset-Body businessDev">Business Development</span>
+          <span ng-click="includeRole('Growth')" ng-class="{'selected': isSelected[0]['Growth']}" class="Skillset-Body growth">Growth</span>
         </div>
       </div>
 
-      <div>
-        <div class="roleHeader">
-          <strong>Job Type:</strong>
+      <div class="side-wrap">
+        <h3 class="role role-side">Locations</h3>
+        <div class="row">
+          <span ng-click="includeRole('Denver')" ng-class="{'selected': isSelected[0]['Denver']}" class="Skillset-Body">Denver</span>
+          <span ng-click="includeRole('Boulder')" ng-class="{'selected': isSelected[0]['Boulder']}" class="Skillset-Body">Boulder</span>
+          <span ng-click="includeRole('Fort Collins')" ng-class="{'selected': isSelected[0]['FortCollins']}" class="Skillset-Body">Fort Collins</span>
+          <span ng-click="includeRole('Colorado Springs')" ng-class="{'selected': isSelected[0]['ColoradoSprings']}" class="Skillset-Body">Colorado Springs</span>
         </div>
-        <div class="selections">
-          <label for="contract">
-            Contract
-            <input id="contract" type="checkbox" ng-click="includeRole('Contract')" />
-          </label>
-          <label for="parttime">
-            Part Time
-            <input id="parttime" type="checkbox" ng-click="includeRole('Part Time')" />
-          </label>
-          <label for="fulltime">
-            Full Time
-            <input id="fulltime" type="checkbox" ng-click="includeRole('Full Time')" />
-          </label>
-          <label for="brandambassador">
-            Brand Ambassador
-            <input id="brandambassador" type="checkbox" ng-click="includeRole('Contract')" />
-          </label>
+      </div>
+
+      <div class="side-wrap">
+        <h3 class="role role-side">Job Type</h3>
+        <div class="row">
+          <span ng-click="includeRole('Contract')" ng-class="{'selected': isSelected[0]['Contract']}" class="Skillset-Body">Contract</span>
+          <span ng-click="includeRole('Part Time')" ng-class="{'selected': isSelected[0]['PartTime']}" class="Skillset-Body">Part Time</span>
+          <span ng-click="includeRole('Full Time')" ng-class="{'selected': isSelected[0]['FullTime']}" class="Skillset-Body">Full Time</span>
+          <span ng-click="includeRole('Brand Ambassador')" ng-class="{'selected': isSelected[0]['BrandAmbassador']}" class="Skillset-Body">Brand Ambassador</span>
         </div>
+      </div>
+
+      <div class="Ad">
+      </div>
+
+      <div class="footer">
+        <span class="Links">Help</span>
+        <span class="Links">Terms</span>
+        <span class="Links">Privacy</span>
+        <span class="Links">About</span>
       </div>
     </div>
   </div>
