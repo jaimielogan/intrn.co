@@ -2,6 +2,47 @@ body{
   background-color: #f9f9f9;
 }
 
+textarea {
+  resize: none;
+}
+
+label {
+  width: 100%;
+  color: #737373;
+}
+
+input, .form-control {
+  border: 1px solid #9b9b9b;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.navbar-brand, .navbar-inverse .navbar-brand {
+  color: #575757;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.head-btn {
+  border: 0;
+  background-color: #9b9b9b;
+  color: #fff;
+  border-radius: 2px;
+  text-transform: inherit;
+  letter-spacing: .05em;
+  font-family: Assistant;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+
+
+.btn a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .Nav-body {
   background-color: #ffffff;
 }
@@ -46,7 +87,7 @@ body{
 }
 
 .Post-Body {
-  max-width: 616px;
+  max-width: 100%;
   min-height: 100px;
   border-radius: 4px;
   background-color: #ffffff;
@@ -65,6 +106,17 @@ body{
   position: relative;
 }
 
+.role-side {
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #737373;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10.5px;
+}
+
 .arrow{
   position:absolute;
   right: 0px;
@@ -79,25 +131,61 @@ body{
   color: #e7aa3b;
 }
 
+.design.selected {
+  background-color: #e7aa3b;
+  color: #fff;
+}
+
+.Skillset-Body.design {
+  border: 1px solid #e7aa3b;
+}
+
 .growth {
   color: #19aae5;
 }
 
-.businessDev{
+.growth.selected {
+  background-color: #19aae5;
+  color: #fff;
+}
+
+.Skillset-Body.growth {
+  border: 1px solid #19aae5;
+}
+
+.businessDev {
   color: #925cc2;
+}
+
+.businessDev.selected {
+  background-color: #925cc2;
+  color: #fff;
+}
+
+.Skillset-Body.businessDev {
+  border: 1px solid #925cc2;
 }
 
 .engineering{
   color: #44d0a5;
 }
 
+.engineering.selected {
+  background-color: #44d0a5;
+  color: #fff;
+}
+
+.Skillset-Body.engineering {
+  border: 1px solid #44d0a5;
+}
+
 .oval{
   border-radius: 100%;
-  display: inline-block;
   font-size: 14px;
   height: 20px;
   width: 20px;
   text-align: center;
+  border: 1px solid #737373;
 }
 
 .design>.oval{
@@ -195,8 +283,9 @@ body{
 }
 
 .endPost {
-  width: 616px;
-  height: 38px;
+  padding: 15px 50px;
+  margin-top: 20px;
+  border-top: 1px solid lightgray;
   font-family: Assistant;
   font-size: 15px;
   font-weight: normal;
@@ -217,32 +306,95 @@ body{
 }
 
 .Skillset-Body {
-  width: 59px;
-  height: 30px;
   border-radius: 2px;
   background-color: #ffffff;
-  border: solid 1px #e7aa3b;
   text-align: center;
   font-family: Assistant;
   font-size: 13px;
   font-weight: 600;
   font-style: normal;
   font-stretch: normal;
-  color: #e7aa3b;
+  padding: 7px 11px;
+  border-radius: 2px;
+  margin: 5px 10px;
+  float: left;
+  border: 1px solid #d4d4d4;
+}
+
+.selected {
+  background-color: #737373;
+  color: #fff;
+}
+
+.Skillset-Body:hover {
+  cursor: pointer;
 }
 
 .Ad {
-  width: 300px;
   height: 215px;
   background-color: #d8d8d8;
+  margin: 30px 0;
+  width: 100%;
 }
 
 .Links {
-  height: 18px;
   font-family: Assistant;
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
   color: #737373;
+  padding: 0 10px;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  border-top: 1px solid lightgray;
+}
+
+.label-space {
+  margin-top: 15px;
+}
+
+.form-btn {
+  border-radius: 20px;
+  width: 100%;
+  padding: 5px 0;
+  background-color: transparent;
+}
+
+.upload-btn {
+  border: 1px solid #925cc2;
+  color: #925cc2;
+}
+
+.preview-btn {
+  border: 1px solid #19aae5;
+  color: #19aae5;
+}
+
+.status-btn {
+  border: 1px solid #9b9b9b;
+  color: #9b9b9b;
+  margin: 10px 0;
+}
+
+.search-header {
+  margin: 0;
+  font-size: 27px;
+  font-family: Assistant;
+  font-weight: 600;
+  color: #575757;
+  text-align: center;
+}
+
+.search-detail {
+  margin: 20px auto 50px auto;
+  width: 300px;
+  font-size: 15px;
+  font-family: Assistant;
+  color: #737373;
+  text-align: center;
 }
