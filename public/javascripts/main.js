@@ -1,4 +1,4 @@
-var app = angular.module('intrn', ['ui.router']);
+var app = angular.module('intrn', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngTouch']);
 
 app.run(['$rootScope', '$state', '$stateParams',
   function($rootScope, $state, $stateParams) {
@@ -18,7 +18,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         url: '/post',
         controller: 'postCtrl',
         templateUrl: './templates/post.html'
-      })
+      });
 
       $urlRouterProvider.otherwise('/');
 
@@ -103,9 +103,114 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
   });
 }]);
 
-app.controller('postCtrl', function($scope){
+app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
+  $scope.view = {};
+  $scope.view.date = Date.now();
+  $scope.view.viewInfoTip = [];
+  $scope.toggleInfoTip = function(input){
+    $scope.view.viewInfoTip[input] = !$scope.view.viewInfoTip[input];
+  };
 
-});
+  $scope.view.filters = {};
+
+  $scope.includeRole = function(role){
+    if($scope.view.filters.role == role){
+      $scope.view.filters.role = '';
+      return;
+    }
+    $scope.view.filters.role = role;
+  };
+
+  $scope.includeLocation = function(location){
+    if($scope.view.filters.location == location){
+      $scope.view.filters.location = '';
+      return;
+    }
+    $scope.view.filters.location = location;
+  };
+
+  $scope.includeType = function(type){
+    if($scope.view.filters.type == type){
+      $scope.view.filters.type = '';
+      return;
+    }
+    $scope.view.filters.type = type;
+  };
+
+  $scope.view.viewPreview = false;
+  $scope.togglePreview = function(){
+    $scope.view.viewPreview = !$scope.view.viewPreview;
+    console.log($scope.view.viewPreview);
+    if($scope.view.viewPreview){
+      $(window).scrollTop(0);
+      $('body').css('overflow', 'hidden');
+      $('.lightBox').on('click', function(){
+        $(this).css('display', 'none');
+        $('body').css('overflow', 'initial');
+        $scope.view.viewPreview = false;
+      });
+    }
+    else{
+      $('.lightBox').css('display', 'block');
+    }
+  };
+
+  $scope.addPost = function(){
+    var title = $scope.view.jobTitle;
+    var companyName = $scope.view.companyName;
+    var comapnyWebsite = $scope.view.companyWebsite;
+    var role = $scope.view.filters.role;
+    switch(role){
+      case 'Design':
+      $scope.view.role_id = 1;
+      break;
+      case 'Engineering':
+      $scope.view.role_id = 2;
+      break;
+      case 'Business Dev':
+      $scope.view.role_id = 3;
+      break;
+      case 'Growth':
+      $scope.view.role_id = 4;
+      break;
+    }
+    var type = $scope.view.filters.type;
+    switch(type){
+      case 'Contract':
+      $scope.view.type_id = 1;
+      break;
+      case 'Part Time':
+      $scope.view.type_id = 2;
+      break;
+      case 'Full Time':
+      $scope.view.type_id = 3;
+      break;
+      case 'Brand Ambassador':
+      $scope.view.type_id = 4;
+      break;
+    }
+    var location = $scope.view.filters.location;
+    switch(location){
+      case 'Denver':
+      $scope.view.location_id = 1;
+      break;
+      case 'Boulder':
+      $scope.view.location_id = 2;
+      break;
+      case 'Fort Collins':
+      $scope.view.location_id = 3;
+      break;
+      case 'Colorado Springs':
+      $scope.view.location_id = 4;
+      break;
+    }
+    var description = $scope.view.responsibilities;
+    var skills = $scope.view.requirements;
+    var bio = $scope.view.companyInfo;
+    posts.addPost($scope.view);
+  };
+
+}]);
 
 app.factory('posts', ['$http', function($http) {
   var posts = {};
@@ -113,6 +218,17 @@ app.factory('posts', ['$http', function($http) {
   posts.getAllPosts = function(cb) {
     $http.get('/posts').success(function(data) {
       cb(data);
+    });
+  };
+
+  posts.addPost = function(input){
+    $http.post('/posts', input)
+    .then(function(response){
+      console.log(response);
+      $state.go('/');
+    })
+    .catch(function(error){
+      console.log(error);
     });
   };
 

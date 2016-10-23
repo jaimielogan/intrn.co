@@ -8,6 +8,19 @@ var query = {
       .leftJoin('types', 'posts.type_id', 'types.id')
       .leftJoin('locations', 'posts.location_id', 'locations.id')
       .leftJoin('companies', 'posts.company_id', 'companies.id');
+  },
+
+  addPost: function(title, role_id, location_id, type_id, company_id, description, skills, bio){
+    return knex('posts').insert({'title': title,
+    'role_id': role_id,
+    'location_id': location_id,
+    'type_id': type_id,
+    'company_id': company_id,
+    'views' : 0,
+    'applicants': 0,
+    'description': description,
+    'skills': skills,
+    'bio': bio});
   }
 };
 
