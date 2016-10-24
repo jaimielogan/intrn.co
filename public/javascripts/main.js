@@ -1,4 +1,4 @@
-var app = angular.module('intrn', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngTouch']);
+var app = angular.module('intrn', ['ui.router']);
 
 app.run(['$rootScope', '$state', '$stateParams',
   function($rootScope, $state, $stateParams) {
@@ -140,19 +140,14 @@ app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
   $scope.view.viewPreview = false;
   $scope.togglePreview = function(){
     $scope.view.viewPreview = !$scope.view.viewPreview;
-    console.log($scope.view.viewPreview);
     if($scope.view.viewPreview){
       $(window).scrollTop(0);
       $('body').css('overflow', 'hidden');
       $('.lightBox').on('click', function(){
-        $(this).css('display', 'none');
+        $(this).css('display', 'block');
         $('body').css('overflow', 'initial');
-        $scope.view.viewPreview = false;
       });
-    }
-    else{
-      $('.lightBox').css('display', 'block');
-    }
+    };
   };
 
   $scope.addPost = function(){
@@ -212,7 +207,7 @@ app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
 
 }]);
 
-app.factory('posts', ['$http', function($http) {
+app.factory('posts', ['$http', '$state', function($http, $state) {
   var posts = {};
 
   posts.getAllPosts = function(cb) {

@@ -34,6 +34,8 @@ input, .form-control {
   font-family: Assistant;
   font-size: 13px;
   font-weight: bold;
+  position: relative;
+  top: 2px;
 }
 
 
@@ -506,5 +508,5 @@ input, .form-control {
 
 .previewButtons{
   width: 50%;
-  margin: 0 auto 20px; 
+  margin: 0 auto 20px;
 }
