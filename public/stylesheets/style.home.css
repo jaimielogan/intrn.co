@@ -482,7 +482,9 @@ input, .form-control {
   color: #575757;
   width: 50%;
   margin-left: 25%;
-  margin-top:10px;
+  margin-top: 2%;
+  max-height: 600px;
+  overflow: scroll;
 }
 
 .previewHeader{
