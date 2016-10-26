@@ -9,12 +9,21 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/', function(req,res,next){
+router.post('/', function(req, res, next) {
   compdb.addCompany(req.body.companyName, req.body.companyWebsite)
-  .then(function(company_id){
-    var companyID = parseInt(company_id);
-    postdb.addPost(req.body.jobTitle, req.body.role_id, req.body.location_id, req.body.type_id, companyID, req.body.responsibilities, req.body.requirements, req.body.companyInfo);
-  });
+  .then(function(response){
+    return response[0];
+  })
+  .then(function(companyId) {
+    postdb.addPost(req.body.jobTitle,
+        req.body.role_id, req.body.location_id,
+        req.body.type_id, companyId,
+        req.body.responsibilities, req.body.requirements,
+        req.body.companyInfo)
+    .then(function(data) {
+      res.json(data);
+    })
+  })
 });
 
 module.exports = router;

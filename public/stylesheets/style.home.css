@@ -18,6 +18,27 @@ input, .form-control {
   box-shadow: none;
 }
 
+.navbar {
+  border-bottom: 0;
+}
+
+.navbar-right {
+  margin-right: -25px;
+}
+
+.jumbotron.landing, .jumbotron.hiring {
+  background: url("/images/Landing Background.png") 0 50% no-repeat;
+  background-size: cover;
+  border-radius: 0;
+  box-shadow: none;
+  border: 0;
+}
+
+.jumbotron.hiring {
+  background: url("/images/Hire Background.png") 0 50% no-repeat;
+  background-size: cover;
+}
+
 .navbar-brand, .navbar-inverse .navbar-brand {
   color: #575757;
   font-weight: bold;
@@ -447,7 +468,7 @@ input, .form-control {
   color: #575757;
   width: 50%;
   margin-left: 25%;
-  margin-top: 8%;
+  margin-top:10px;
 }
 
 .previewHeader{
@@ -489,7 +510,7 @@ input, .form-control {
 }
 
 .edit{
-  width: 156px;
+  width: 147px;
   height: 30px;
   border: 1px solid #575757;
   border-radius: 20px;
@@ -498,7 +519,7 @@ input, .form-control {
 }
 
 .publish{
-  width: 156px;
+  width: 147px;
   height: 30px;
   border: 1px solid #44d0a5;
   border-radius: 20px;
@@ -507,6 +528,6 @@ input, .form-control {
 }
 
 .previewButtons{
-  width: 50%;
-  margin: 0 auto 20px;
+  width: 325px;
+  margin: 0 auto 20px auto;
 }

@@ -217,14 +217,10 @@ app.factory('posts', ['$http', '$state', function($http, $state) {
   };
 
   posts.addPost = function(input){
-    $http.post('/posts', input)
-    .then(function(response){
+    $http.post('/posts', input).success(function(response){
       console.log(response);
-      $state.go('/');
+      $state.go('home');
     })
-    .catch(function(error){
-      console.log(error);
-    });
   };
 
   return posts;

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron landing">
     <h1 class="Header">Getting an internship at a startup is hard. Here's an easier way.</h1>
 
     <h3 class="HeaderInfo">Browse available positions, complete a challenge project, recieve feedback, and get hired.</h3>
@@ -26,7 +26,7 @@
             <div class="postInfo">
               {{ post.location }} &bull;
               {{ post.type }} &bull;
-              Posted on {{ post.updated_at | date: 'MMMM d'}} by {{ post.name }} &bull;
+              Posted on {{ post.updated_at | date: 'MMMM d'}} by <a ng-href="{{post.website}}" target="_blank">{{ post.name }}</a> &bull;
               {{ post.views }} Views &bull;
               {{ post.applicants }} Applicants
             </div>
