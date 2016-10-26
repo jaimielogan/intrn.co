@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  compdb.addCompany(req.body.companyName, req.body.companyWebsite)
+  compdb.addCompany(req.body.companyName, req.body.companyIndustry, req.body.companyWebsite)
   .then(function(response){
     return response[0];
   })
@@ -22,8 +22,8 @@ router.post('/', function(req, res, next) {
         req.body.companyInfo)
     .then(function(data) {
       res.json(data);
-    })
-  })
+    });
+  });
 });
 
 module.exports = router;

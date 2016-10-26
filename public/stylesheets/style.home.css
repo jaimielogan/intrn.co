@@ -272,6 +272,20 @@ input, .form-control {
   font-style: normal;
   font-stretch: normal;
   color: #575757;
+  white-space: pre-line;
+  margin-top: -15px;
+}
+
+.webLink{
+  text-decoration: none;
+  cursor: pointer;
+  color: #9b9b9b;
+}
+
+.webLink:hover{
+  color: #575757;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .applyButtons{

@@ -153,6 +153,7 @@ app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
   $scope.addPost = function(){
     var title = $scope.view.jobTitle;
     var companyName = $scope.view.companyName;
+    var companyIndustry = $scope.view.companyIndustry;
     var comapnyWebsite = $scope.view.companyWebsite;
     var role = $scope.view.filters.role;
     switch(role){
@@ -220,7 +221,7 @@ app.factory('posts', ['$http', '$state', function($http, $state) {
     $http.post('/posts', input).success(function(response){
       console.log(response);
       $state.go('home');
-    })
+    });
   };
 
   return posts;

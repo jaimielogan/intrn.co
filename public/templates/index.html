@@ -15,18 +15,18 @@
             </span>
             {{ post.role }}
             <span ng-click="toggleDetails(post.id)">
-              <img src="../images/down_arrow.png" class="arrow" alt="down arrow" / ng-hide="view.viewDetails[post.id]">
-              <img src="../images/up_arrow.png" class="arrow" alt="up arrow" / ng-show="view.viewDetails[post.id]">
+              <img src="../images/down_arrow.png" class="arrow" alt="down arrow" ng-hide="view.viewDetails[post.id]" />
+              <img src="../images/up_arrow.png" class="arrow" alt="up arrow" ng-show="view.viewDetails[post.id]" />
             </span>
           </div>
           <div class="cardWrapper">
             <div class="postTitle">
-              {{ post.title }}
+              {{ post.title }} at {{ post.industry }} Startup
             </div>
             <div class="postInfo">
               {{ post.location }} &bull;
               {{ post.type }} &bull;
-              Posted on {{ post.updated_at | date: 'MMMM d'}} by <a ng-href="{{post.website}}" target="_blank">{{ post.name }}</a> &bull;
+              Posted on {{ post.updated_at | date: 'MMMM d'}} by <a ng-href="{{post.website}}" target="_blank" class="webLink">{{ post.name }}</a> &bull;
               {{ post.views }} Views &bull;
               {{ post.applicants }} Applicants
             </div>
