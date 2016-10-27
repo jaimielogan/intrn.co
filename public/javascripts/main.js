@@ -147,7 +147,7 @@ app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
         $(this).css('display', 'block');
         $('body').css('overflow', 'initial');
       });
-    };
+    }
   };
 
   $scope.addPost = function(){
@@ -156,6 +156,12 @@ app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
     var companyIndustry = $scope.view.companyIndustry;
     var comapnyWebsite = $scope.view.companyWebsite;
     var role = $scope.view.filters.role;
+    var pdf = $scope.view.uploadpdf;
+
+    var fd = new FormData();
+
+    console.log(fd);
+
     switch(role){
       case 'Design':
       $scope.view.role_id = 1;

@@ -21,6 +21,7 @@
     "bootstrap": "^3.3.7",
     "ui-bootstrap": "angular-ui-bootstrap#^2.2.0",
     "angular-animate": "^1.5.8",
-    "angular-touch": "^1.5.8"
+    "angular-touch": "^1.5.8",
+    "angular-upload": "^1.0.12"
   }
 }

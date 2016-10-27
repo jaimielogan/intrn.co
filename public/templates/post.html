@@ -5,7 +5,7 @@
     <h3 class="HeaderInfo">Intrn.co is the best way to reach qualified and motivated students. Get started with a new posting below.</h3>
   </div>
 
-  <form class="addForm">
+  <form class="addForm" enctype="multipart/form-data">
     <div class="row">
       <div class="col-md-7">
         <div class="clearfix">
@@ -114,7 +114,10 @@
 
         <div>
           <div class="side-wrap">
-            <h3 class="role role-side label-space">Upload Challenge
+            <h3 class="role role-side label-space">
+              <input type="file" name="uploadpdf" value="" ng-model="view.uploadpdf">
+              <!-- <div class="btn btn-primary btn-upload" upload-button url="/posts" param="file" data="formData" accept="{{acceptTypes}}" multiple="{{allowMultiple}}" force-iframe-upload="{{forceIframeUpload}}" required="true|false" on-upload="onUpload(files)"  on-success="onSuccess(response)"on-error="onError(response)" on-complete="onComplete(response)">Fileupload</div> -->
+              Upload Challenge
               <div class="infoTip infoTipSide" ng-show="view.viewInfoTip[3]">
                 [INSERT URL FOR DIRECTIONS AND SAMPLE]
               </div>

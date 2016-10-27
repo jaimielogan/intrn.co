@@ -10,6 +10,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+
+  console.log('req.body', req.body);
+  console.log('req.files', req.files);
+  return;
+
   compdb.addCompany(req.body.companyName, req.body.companyIndustry, req.body.companyWebsite)
   .then(function(response){
     return response[0];
