@@ -1,4 +1,4 @@
-var app = angular.module('intrn', ['ui.router']);
+var app = angular.module('intrn', ['ui.router', 'ngFileUpload']);
 
 app.run(['$rootScope', '$state', '$stateParams',
   function($rootScope, $state, $stateParams) {
@@ -103,7 +103,7 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
   });
 }]);
 
-app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
+app.controller('postCtrl', ['$scope', 'posts', 'Upload', function($scope, posts, Upload){
   $scope.view = {};
   $scope.view.date = Date.now();
   $scope.view.viewInfoTip = [];
@@ -150,18 +150,12 @@ app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
     }
   };
 
-  $scope.addPost = function(){
+  $scope.addPost = function(file){
     var title = $scope.view.jobTitle;
     var companyName = $scope.view.companyName;
     var companyIndustry = $scope.view.companyIndustry;
     var comapnyWebsite = $scope.view.companyWebsite;
     var role = $scope.view.filters.role;
-    var pdf = $scope.view.uploadpdf;
-
-    var fd = new FormData();
-
-    console.log(fd);
-
     switch(role){
       case 'Design':
       $scope.view.role_id = 1;
@@ -209,12 +203,12 @@ app.controller('postCtrl', ['$scope', 'posts', function($scope, posts){
     var description = $scope.view.responsibilities;
     var skills = $scope.view.requirements;
     var bio = $scope.view.companyInfo;
-    posts.addPost($scope.view);
-  };
 
+    posts.addPost($scope.view, file);
+  };
 }]);
 
-app.factory('posts', ['$http', '$state', function($http, $state) {
+app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Upload) {
   var posts = {};
 
   posts.getAllPosts = function(cb) {
@@ -223,11 +217,30 @@ app.factory('posts', ['$http', '$state', function($http, $state) {
     });
   };
 
-  posts.addPost = function(input){
-    $http.post('/posts', input).success(function(response){
-      console.log(response);
-      $state.go('home');
-    });
+  posts.addPost = function(input, file){
+    // $http.post('/posts', input).success(function(response){
+    //   $state.go('home');
+    // });
+    console.log('input', input);
+    file.upload = Upload.upload({
+       url: '/posts',
+       data: {
+         file: file,
+         jobTitle : input.jobTitle,
+         companyName : input.companyName,
+         companyIndustry : input.companyIndustry,
+         comapnyWebsite : input.companyWebsite,
+         role : input.filters.role,
+         type : input.filters.type,
+         location : input.filters.location,
+         responsibilities : input.responsibilities,
+         requirements : input.requirements,
+         companyInfo : input.companyInfo
+       }
+     })
+     .success(function(response){
+       $state.go('home');
+     });
   };
 
   return posts;

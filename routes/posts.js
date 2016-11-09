@@ -10,11 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-
   console.log('req.body', req.body);
-  console.log('req.files', req.files);
-  return;
-
   compdb.addCompany(req.body.companyName, req.body.companyIndustry, req.body.companyWebsite)
   .then(function(response){
     return response[0];
@@ -26,6 +22,16 @@ router.post('/', function(req, res, next) {
         req.body.responsibilities, req.body.requirements,
         req.body.companyInfo)
     .then(function(data) {
+      var pdfFile = req.files.file;
+      var pdfFileName = req.files.file.name;
+      var date = Date.now();
+      var newFilename = date + '-' + pdfFileName;
+      var filePath = __dirname + '/../public/pdfs/challenges/' + newFilename;
+      pdfFile.mv(filePath, function(err) {
+        if (err) {
+          res.status(500).send(err);
+        }
+      });
       res.json(data);
     });
   });

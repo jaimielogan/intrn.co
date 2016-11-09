@@ -115,8 +115,7 @@
         <div>
           <div class="side-wrap">
             <h3 class="role role-side label-space">
-              <input type="file" name="uploadpdf" value="" ng-model="view.uploadpdf">
-              <!-- <div class="btn btn-primary btn-upload" upload-button url="/posts" param="file" data="formData" accept="{{acceptTypes}}" multiple="{{allowMultiple}}" force-iframe-upload="{{forceIframeUpload}}" required="true|false" on-upload="onUpload(files)"  on-success="onSuccess(response)"on-error="onError(response)" on-complete="onComplete(response)">Fileupload</div> -->
+              <input type="file" name="uploadpdf" value="" ngf-select ng-model="uploadpdf">
               Upload Challenge
               <div class="infoTip infoTipSide" ng-show="view.viewInfoTip[3]">
                 [INSERT URL FOR DIRECTIONS AND SAMPLE]
@@ -152,7 +151,7 @@
 
 <!-- Preview Posting -->
 <div class="lightBox" ng-show="view.viewPreview" ng-click="togglePreview()">
-  <form ng-submit="addPost()">
+  <form>
     <div class="previewPosting container">
       <h1 class="previewHeader">This is preview of your posting</h1>
       <div class="rolePreview" ng-class="{'design': view.filters.role == 'Design', 'growth': view.filters.role == 'Growth', 'businessDev': view.filters.role == 'Business Dev', 'engineering': view.filters.role == 'Engineering'}">
@@ -198,7 +197,7 @@
         </p>
         <div class="previewButtons">
           <input type="button" class="edit" value="Edit">
-          <input type="submit" class="publish" value="Publish">
+          <input ng-click="addPost(uploadpdf)" type="button" class="publish" value="Publish">
         </div>
       </div>
     </div>
