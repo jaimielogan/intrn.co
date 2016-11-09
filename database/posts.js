@@ -3,9 +3,13 @@ var knex = require('./config');
 var query = {
   getAllPosts: function() {
     return knex('posts')
-      .select('roles.role', 'posts.id AS id', 'posts.title', 'locations.location', 'types.type', 'posts.updated_at', 'companies.name', 'posts.views', 'posts.applicants', 'posts.description' ,'posts.skills', 'posts.bio', 'companies.website', 'companies.industry')
+      .select('roles.role', 'posts.id AS id', 'posts.title', 'locations.location',
+              'types.type', 'posts.updated_at', 'companies.name', 'posts.views', 'posts.applicants',
+              'posts.description' ,'posts.skills', 'posts.bio', 'companies.website', 'companies.industry',
+              'challenges.challenge_link')
       .leftJoin('roles', 'posts.role_id', 'roles.id')
       .leftJoin('types', 'posts.type_id', 'types.id')
+      .leftJoin('challenges', 'posts.id', 'challenges.post_id')
       .leftJoin('locations', 'posts.location_id', 'locations.id')
       .leftJoin('companies', 'posts.company_id', 'companies.id');
   },
@@ -20,7 +24,7 @@ var query = {
     applicants: 0,
     description: description,
     skills: skills,
-    bio: bio});
+    bio: bio}).returning('id');
   }
 };
 

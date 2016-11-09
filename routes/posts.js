@@ -1,5 +1,6 @@
 var express = require('express');
 var postdb = require('../database/posts.js');
+var challengdb = require('../database/challenges.js');
 var compdb = require('../database/companies.js');
 var router = express.Router();
 
@@ -21,19 +22,26 @@ router.post('/', function(req, res, next) {
         req.body.type_id, companyId,
         req.body.responsibilities, req.body.requirements,
         req.body.companyInfo)
-    .then(function(data) {
+    .then(function(postId) {
+      return postId[0];
+    })
+    .then(function(postId) {
       var pdfFile = req.files.file;
       var pdfFileName = req.files.file.name;
       var date = Date.now();
       var newFilename = date + '-' + pdfFileName;
-      var filePath = __dirname + '/../public/pdfs/challenges/' + newFilename;
-      pdfFile.mv(filePath, function(err) {
+      var challengeLink = __dirname + '/../public/pdfs/challenges/' + newFilename;
+      pdfFile.mv(challengeLink, function(err) {
         if (err) {
           res.status(500).send(err);
         }
       });
-      res.json(data);
-    });
+
+      challengdb.addChallenge(postId, newFilename)
+        .then(function(data) {
+          res.json(data);
+        })
+    })
   });
 });
 

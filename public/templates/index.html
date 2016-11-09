@@ -52,7 +52,9 @@
               </p>
             </div>
             <div class="applyButtons">
-              <input type="button" class="buttons" value="Download Challenge" ng-class="{'designButton': post.role == 'Design', 'growthButton': post.role == 'Growth', 'businessDevButton': post.role == 'Business Dev', 'engineeringButton': post.role == 'Engineering'}">
+              <a target="_self" href="pdfs/challenges/{{post.challenge_link}}" download>
+                <input type="button" class="buttons" value="Download Challenge" ng-class="{'designButton': post.role == 'Design', 'growthButton': post.role == 'Growth', 'businessDevButton': post.role == 'Business Dev', 'engineeringButton': post.role == 'Engineering'}">
+              </a>
               <input type="button" class="buttons" value="Apply for this job" ng-class="{'designButton': post.role == 'Design', 'growthButton': post.role == 'Growth', 'businessDevButton': post.role == 'Business Dev', 'engineeringButton': post.role == 'Engineering'}">
             </div>
           </div>

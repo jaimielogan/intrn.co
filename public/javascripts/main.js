@@ -6,8 +6,8 @@ app.run(['$rootScope', '$state', '$stateParams',
     $rootScope.$stateParams = $stateParams;
   }]);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
-  function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compileProvider',
+  function($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
     $stateProvider
       .state('home', {
         url: '/',
@@ -19,6 +19,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         controller: 'postCtrl',
         templateUrl: './templates/post.html'
       });
+
+      $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|fil‌​e|blob|ftp|mailto|ch‌​rome-extension):/);
 
       $urlRouterProvider.otherwise('/');
 
@@ -69,7 +71,6 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
     };
 
     $scope.roleFilter = function(post) {
-      console.log($scope.roleIncludes);
       if ($scope.roleIncludes.length > 0) {
         if (($.inArray(post.role, $scope.roleIncludes) < 0) &&
             ($.inArray(post.location, $scope.roleIncludes) < 0) &&
@@ -221,7 +222,6 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
     // $http.post('/posts', input).success(function(response){
     //   $state.go('home');
     // });
-    console.log('input', input);
     file.upload = Upload.upload({
        url: '/posts',
        data: {
@@ -230,9 +230,9 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
          companyName : input.companyName,
          companyIndustry : input.companyIndustry,
          comapnyWebsite : input.companyWebsite,
-         role : input.filters.role,
-         type : input.filters.type,
-         location : input.filters.location,
+         role_id : input.role_id,
+         type_id : input.type_id,
+         location_id : input.location_id,
          responsibilities : input.responsibilities,
          requirements : input.requirements,
          companyInfo : input.companyInfo
