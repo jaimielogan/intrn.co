@@ -25,6 +25,10 @@ var query = {
     description: description,
     skills: skills,
     bio: bio}).returning('id');
+  },
+
+  addView: function(postId) {
+    return knex('posts').update({views: views++}).where('id', postId);
   }
 };
 

@@ -34,6 +34,7 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
   $scope.view = {};
   $scope.post = posts.posts;
   $scope.view.viewDetails = [];
+  $scope.postData = [];
 
   $scope.toggleDetails = function(postID){
     $scope.view.viewDetails[postID] = !$scope.view.viewDetails[postID];
@@ -81,33 +82,18 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
 
       return post;
     };
-
-    // $scope.locationFilter = function(post) {
-    //   if ($scope.roleIncludes.length > 0) {
-    //     if ( ($.inArray(post.location, $scope.roleIncludes) < 0) &&
-    //       ($.inArray(post.role, $scope.roleIncludes) < 0) ) {
-    //         return;
-    //       }
-    //   };
-    //   console.log($scope.roleIncludes);
-    //   return post;
-    // };
-
-    //  $scope.typeFilter = function(post) {
-    //    if ($scope.roleIncludes.length > 0) {
-    //      if ( ($.inArray(post.type, $scope.roleIncludes) < 0) ||
-    //       ($.inArray())) return;
-    //    };
-    //    console.log($scope.roleIncludes);
-    //    return post;
-    //  };
   });
+
+  $scope.addView = function(postId) {
+    posts.addView(postId);
+  }
 }]);
 
 app.controller('postCtrl', ['$scope', 'posts', 'Upload', function($scope, posts, Upload){
   $scope.view = {};
   $scope.view.date = Date.now();
   $scope.view.viewInfoTip = [];
+
   $scope.toggleInfoTip = function(input){
     $scope.view.viewInfoTip[input] = !$scope.view.viewInfoTip[input];
   };
@@ -217,6 +203,12 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
       cb(data);
     });
   };
+
+  posts.addView = function(postId) {
+    $http.post('/posts/view', {postId: postId}).success(function(data) {
+      console.log(data);
+    });
+  }
 
   posts.addPost = function(input, file){
     // $http.post('/posts', input).success(function(response){
