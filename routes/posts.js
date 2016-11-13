@@ -11,16 +11,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/view', function(req, res, next) {
-  console.log('hey');
-  console.log(req.body);
-  // postdb.addView(req.body.postId)
-  //   .then(function(data) {
-  //     res.json(data);
-  //   })
+  postdb.getViews(req.body.postId)
+  .then(function(views){
+    var updatedViews = views[0].views += 1;
+    return updatedViews;
+  })
+  .then(function(updatedViews){
+    postdb.addView(req.body.postId, updatedViews)
+    .then(function(data) {
+      res.json(data);
+    })
+  })
 });
 
 router.post('/', function(req, res, next) {
-  console.log('req.body', req.body);
   compdb.addCompany(req.body.companyName, req.body.companyIndustry, req.body.companyWebsite)
   .then(function(response){
     return response[0];

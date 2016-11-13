@@ -59,8 +59,6 @@ input, .form-control {
   top: 2px;
 }
 
-
-
 .btn a {
   text-decoration: none;
   color: inherit;
@@ -485,6 +483,7 @@ input, .form-control {
   margin-top: 2%;
   max-height: 600px;
   overflow: scroll;
+  z-index: 1;
 }
 
 .previewHeader{
@@ -518,7 +517,7 @@ input, .form-control {
 
 .termsCond{
   margin: 20px auto;
-  width: 50%;
+  width: 60%;
 }
 
 .termsCond a{
@@ -546,4 +545,58 @@ input, .form-control {
 .previewButtons{
   width: 325px;
   margin: 0 auto 20px auto;
+}
+
+.apply {
+  padding: 0 25px;
+}
+
+.applyRow {
+  padding: 10px 0;
+}
+
+.lastRow {
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.uploadApplication{
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.fileContainer {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.fileUpload{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  width: 250px;
+}
+
+.uploadButton{
+  width: 240px;
+}
+
+.uploadChallenge{
+  border: solid 1px #925cc2;
+  color: #925cc2;
+}
+
+.uploadResume{
+  border: solid 1px #19aae5;
+  color: #19aae5;
+}
+
+.apply{
+  border: solid 1px #44d0a5;
+  color: #44d0a5;
 }

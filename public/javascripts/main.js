@@ -1,4 +1,4 @@
-var app = angular.module('intrn', ['ui.router', 'ngFileUpload']);
+var app = angular.module('intrn', ['ui.router', 'ngFileUpload', 'ui.bootstrap']);
 
 app.run(['$rootScope', '$state', '$stateParams',
   function($rootScope, $state, $stateParams) {
@@ -30,18 +30,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compi
       });
   }]);
 
-app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
+app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', function($scope, posts, $uibModal, $log) {
   $scope.view = {};
   $scope.post = posts.posts;
   $scope.view.viewDetails = [];
   $scope.postData = [];
+  $scope.view.applyID = 0;
 
   $scope.toggleDetails = function(postID){
     $scope.view.viewDetails[postID] = !$scope.view.viewDetails[postID];
   };
 
   posts.getAllPosts(function(data) {
-    // console.log(data);
     $scope.postData = data;
     $scope.roleIncludes = [];
     $scope.isSelected = [{
@@ -86,7 +86,18 @@ app.controller('mainCtrl', ['$scope', 'posts', function($scope, posts) {
 
   $scope.addView = function(postId) {
     posts.addView(postId);
-  }
+  };
+
+  $scope.toggleApply = function(applyID, title, companyName){
+    $scope.view.applyID = applyID;
+    $scope.view.applyTitle = title;
+    $scope.view.applyCompanyName = companyName;
+    var modalInstance = $uibModal.open({
+      templateUrl: 'apply.html',
+      scope: $scope
+    });
+  };
+
 }]);
 
 app.controller('postCtrl', ['$scope', 'posts', 'Upload', function($scope, posts, Upload){
@@ -211,9 +222,6 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
   }
 
   posts.addPost = function(input, file){
-    // $http.post('/posts', input).success(function(response){
-    //   $state.go('home');
-    // });
     file.upload = Upload.upload({
        url: '/posts',
        data: {

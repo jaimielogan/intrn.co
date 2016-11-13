@@ -27,8 +27,12 @@ var query = {
     bio: bio}).returning('id');
   },
 
-  addView: function(postId) {
-    return knex('posts').update({views: views++}).where('id', postId);
+  getViews: function(postId){
+    return knex('posts').select('views').where('id', postId);
+  },
+
+  addView: function(postId, updatedViews) {
+    return knex('posts').update({views: updatedViews}).where('id', postId);
   }
 };
 
