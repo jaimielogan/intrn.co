@@ -36,6 +36,7 @@ app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', function($scope, pos
   $scope.view.viewDetails = [];
   $scope.postData = [];
   $scope.view.applyID = 0;
+  $modalInstance = {};
 
   $scope.toggleDetails = function(postID){
     $scope.view.viewDetails[postID] = !$scope.view.viewDetails[postID];
@@ -79,7 +80,6 @@ app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', function($scope, pos
           return;
         }
       }
-
       return post;
     };
   });
@@ -97,6 +97,12 @@ app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', function($scope, pos
       scope: $scope
     });
   };
+
+  $scope.apply = function(){
+    posts.apply($scope.view);
+    // *Need to be able to close the modal
+    modalInstance.close()
+  }
 
 }]);
 
@@ -241,6 +247,29 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
      .success(function(response){
        $state.go('home');
      });
+  };
+
+  posts.apply = function(input, challengeFile, resumeFile){
+    console.log('posts.apply input', input);
+    file.upload = Upload.upload({
+      url: '/',
+      data: {
+        challengeFile: challengeFile,
+        resumeFile: resumeFile,
+        firstName: firstName,
+        lastName: lastName,
+        school: school,
+        email: email,
+        number: number,
+        twitter: twitter,
+        linkedin: linkedin,
+        github: github,
+        about: about
+      }
+    })
+    .success(function(response){
+      $state.go('home');
+    });
   };
 
   return posts;

@@ -50,10 +50,10 @@ router.post('/', function(req, res, next) {
         }
       });
 
-      challengdb.addChallenge(postId, newFilename)
-        .then(function(data) {
-          res.json(data);
-        })
+    challengdb.addChallenge(postId, newFilename)
+      .then(function(data) {
+        res.json(data);
+      })
     })
   });
 });

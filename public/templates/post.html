@@ -114,16 +114,17 @@
 
         <div>
           <div class="side-wrap">
-            <h3 class="role role-side label-space">
-              <input type="file" name="uploadpdf" value="" ngf-select ng-model="uploadpdf">
-              Upload Challenge
+            <h3 class="role role-side label-space">Upload Challenge
               <div class="infoTip infoTipSide" ng-show="view.viewInfoTip[3]">
                 [INSERT URL FOR DIRECTIONS AND SAMPLE]
               </div>
               <span class="oval pull-right" ng-click="toggleInfoTip(3)" ng-class="{'ovalSelected': view.viewInfoTip[3]}">?</span>
             </h3>
-
-            <input type="button" class="upload-btn form-btn" value="Upload Challenge .pdf" />
+            
+            <div class="uploadFileContainer">
+              <input type="file" name="uploadpdf" class="challengeUpload" value="" ngf-select ng-model="uploadpdf">
+              <input type="button" class="form-btn preview-btn uploadChallenge" value="Upload Challenge *.pdf">
+            </div>
           </div>
 
           <div class="side-wrap">
