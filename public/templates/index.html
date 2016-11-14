@@ -122,15 +122,15 @@
         <div class="row applyRow">
           <div class="col-md-4">
             <label for="firstName">First Name*</label>
-            <input type="text" name="firstName" id="firstName" placeholder="Joe" class="form-control">
+            <input type="text" name="firstName" id="firstName" placeholder="Joe" class="form-control" ng-model="view.firstName">
           </div>
           <div class="col-md-4">
             <label for="lastName">Last Name*</label>
-            <input type="text" name="lastName" id="lastName" placeholder="Schmoe" class="form-control">
+            <input type="text" name="lastName" id="lastName" placeholder="Schmoe" class="form-control" ng-model="view.lastName">
           </div>
           <div class="col-md-4">
             <label for="school">School</label>
-            <select class="dropDown form-control">
+            <select class="dropDown form-control" ng-model="view.school">
               <option selected>University of Denver</option>
               <option>University of Colorado at Denver</option>
               <option>University of Colorado at Boulder</option>
@@ -142,26 +142,26 @@
         <div class="row applyRow">
           <div class="col-md-8">
             <label for="email">Primary Email*</label>
-            <input type="text" name="email" id="email" placeholder="joe@schmoe.com" class="form-control">
+            <input type="text" name="email" id="email" placeholder="joe@schmoe.com" class="form-control" ng-model="view.email">
           </div>
           <div class="col-md-4">
             <label for="phone">Phone Number*</label>
-            <input type="text" name="phone" id="phone" placeholder="(303)555-5555" class="form-control">
+            <input type="text" name="phone" id="phone" placeholder="(303)555-5555" class="form-control" ng-model="view.number">
           </div>
         </div>
 
         <div class="row lastRow">
           <div class="col-md-4">
             <label for="twitter">Twitter</label>
-            <input type="text" name="twitter" id="twitter" placeholder="@joe" class="form-control">
+            <input type="text" name="twitter" id="twitter" placeholder="@joe" class="form-control" ng-model="view.twitter">
           </div>
           <div class="col-md-4">
             <label for="linkedin">LinkedIn</label>
-            <input type="text" name="linkedin" id="linkedin" placeholder="joeschmoe" class="form-control">
+            <input type="text" name="linkedin" id="linkedin" placeholder="joeschmoe" class="form-control" ng-model="view.linkedin">
           </div>
           <div class="col-md-4">
             <label for="github">Github</label>
-            <input type="text" name="github" id="github" placeholder="@joe" class="form-control">
+            <input type="text" name="github" id="github" placeholder="@joe" class="form-control" ng-model="view.github">
           </div>
         </div>
 
@@ -192,7 +192,7 @@
         </p>
         <div class="uploadApplication">
           <input type="button" class="edit uploadButton" value="Maybe Later" ng-click="cancel()">
-          <input type="button" class="edit uploadButton apply" value="Apply">
+          <input type="button" class="edit uploadButton apply" value="Apply" ng-click="apply()">
         </div>
 
       </form>
