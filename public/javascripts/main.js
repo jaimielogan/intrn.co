@@ -104,6 +104,11 @@ app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', function($scope, pos
     modalInstance.close()
   }
 
+  $scope.cancel = function(){
+    // $uibModalInstance.close();
+    modalInstance.close(); 
+  }
+
 }]);
 
 app.controller('postCtrl', ['$scope', 'posts', 'Upload', function($scope, posts, Upload){
