@@ -265,6 +265,7 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
       data: {
         challengeFile: challengeFile,
         resumeFile: resumeFile,
+        applyID: input.applyID,
         firstName: input.firstName,
         lastName: input.lastName,
         school: input.school,

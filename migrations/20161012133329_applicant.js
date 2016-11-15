@@ -11,7 +11,7 @@ exports.up = function(knex, Promise) {
     table.string('twitter');
     table.string('linkedin');
     table.string('github');
-    table.string('about');
+    table.text('about');
     table.string('challenge_response');
     table.string('resume_response');
     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
