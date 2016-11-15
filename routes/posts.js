@@ -49,7 +49,6 @@ router.post('/', function(req, res, next) {
           res.status(500).send(err);
         }
       });
-
     challengdb.addChallenge(postId, newFilename)
       .then(function(data) {
         res.json(data);
