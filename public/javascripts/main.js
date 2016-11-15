@@ -30,13 +30,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compi
       });
   }]);
 
-app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', function($scope, posts, $uibModal, $log) {
+app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', 'Upload', function($scope, posts, $uibModal, $log, Upload) {
   $scope.view = {};
   $scope.post = posts.posts;
   $scope.view.viewDetails = [];
   $scope.postData = [];
   $scope.view.applyID = 0;
   $modalInstance = {};
+  var modalInstance;
 
   $scope.toggleDetails = function(postID){
     $scope.view.viewDetails[postID] = !$scope.view.viewDetails[postID];
@@ -92,21 +93,21 @@ app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', function($scope, pos
     $scope.view.applyID = applyID;
     $scope.view.applyTitle = title;
     $scope.view.applyCompanyName = companyName;
-    var modalInstance = $uibModal.open({
+    modalInstance = $uibModal.open({
       templateUrl: 'apply.html',
       scope: $scope
     });
   };
 
-  $scope.apply = function(){
-    posts.apply($scope.view);
+  $scope.apply = function(challengeFile, resumeFile){
+    posts.apply($scope.view, challengeFile, resumeFile);
     // *Need to be able to close the modal
-    modalInstance.close()
+    modalInstance.close();
   }
 
   $scope.cancel = function(){
     // $uibModalInstance.close();
-    modalInstance.close(); 
+    modalInstance.close();
   }
 
 }]);
@@ -256,20 +257,23 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
 
   posts.apply = function(input, challengeFile, resumeFile){
     console.log('posts.apply input', input);
-    file.upload = Upload.upload({
-      url: '/',
+    console.log('challenge file:',challengeFile);
+    console.log('resume file:',resumeFile);
+
+    challengeFile.upload = Upload.upload({
+      url: '/applications',
       data: {
         challengeFile: challengeFile,
         resumeFile: resumeFile,
-        firstName: firstName,
-        lastName: lastName,
-        school: school,
-        email: email,
-        number: number,
-        twitter: twitter,
-        linkedin: linkedin,
-        github: github,
-        about: about
+        firstName: input.firstName,
+        lastName: input.lastName,
+        school: input.school,
+        email: input.email,
+        number: input.number,
+        twitter: input.twitter,
+        linkedin: input.linkedin,
+        github: input.github,
+        about: input.about
       }
     })
     .success(function(response){

@@ -131,10 +131,10 @@
           <div class="col-md-4">
             <label for="school">School</label>
             <select class="dropDown form-control" ng-model="view.school">
-              <option selected>University of Denver</option>
-              <option>University of Colorado at Denver</option>
-              <option>University of Colorado at Boulder</option>
-              <option>Colorado State University</option>
+              <option selected value="University of Denver">University of Denver</option>
+              <option value="University of Colorado at Denver">University of Colorado at Denver</option>
+              <option value="University of Colorado at Boulder">University of Colorado at Boulder</option>
+              <option value="Colorado State University">Colorado State University</option>
             </select>
           </div>
         </div>
@@ -192,7 +192,7 @@
         </p>
         <div class="uploadApplication">
           <input type="button" class="edit uploadButton" value="Maybe Later" ng-click="cancel()">
-          <input type="button" class="edit uploadButton apply" value="Apply" ng-click="apply()">
+          <input type="button" class="edit uploadButton apply" value="Apply" ng-click="apply(challengepdf, resumepdf)">
         </div>
 
       </form>
