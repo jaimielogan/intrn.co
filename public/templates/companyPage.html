@@ -13,7 +13,7 @@
             <span class="oval">
               {{ $index +1}}
             </span>
-            {{ post.role }}
+              {{ post.role }}
             <span ng-click="toggleDetails(post.id)">
               <img src="../images/down_arrow.png" class="arrow" alt="down arrow" ng-hide="view.viewDetails[post.id]" />
               <img src="../images/up_arrow.png" class="arrow" alt="up arrow" ng-show="view.viewDetails[post.id]" />
@@ -33,6 +33,35 @@
           </div>
 
           <div class="postDetail" ng-show="view.viewDetails[post.id]">
+            <div class="applicants">
+              <div class="row">
+                <div class="col-md-3">
+                  <p class="applicantName">
+                    Joe Smith
+                  </p>
+                </div>
+                <div class="col-md-3">
+                  <p class="appliedDate">
+                    July 3
+                  </p>
+                </div>
+                <div class="col-md-3">
+                  <p class="viewApplication">
+                    <a href="#">View Application</a>
+                  </p>
+                </div>
+                <div class="col-md-2">
+                  <p class="contactApplicant">
+                    <a href="#">Contact</a>
+                  </p>
+                </div>
+                <div class="col-md-1">
+                  <p class="removeApplicant">
+                    X
+                  </p>
+                </div>
+              </div>
+            </div>
             <div class="description">
               <h3 class="detailHeader">What you'd do with us</h3>
               <p class="detailContent">
@@ -51,11 +80,15 @@
                 {{post.bio}}
               </p>
             </div>
-            <div class="applyButtons">
-              <a ng-click="addView(post.id)" target="_self" href="pdfs/challenges/{{post.challenge_link}}" download>
-                <input type="button" class="buttons" value="Download Challenge" ng-class="{'designButton': post.role == 'Design', 'growthButton': post.role == 'Growth', 'businessDevButton': post.role == 'Business Dev', 'engineeringButton': post.role == 'Engineering'}">
-              </a>
-              <input type="button" class="buttons" value="Apply for this job" ng-class="{'designButton': post.role == 'Design', 'growthButton': post.role == 'Growth', 'businessDevButton': post.role == 'Business Dev', 'engineeringButton': post.role == 'Engineering'}" ng-click="toggleApply(post.id, post.title, post.name)">
+            <div class="postButtons row">
+              <input type="button" class="removePost-btn form-btn" value="Remove" />
+              <p class="expiration">
+                Expires on {date}
+              </p>
+              <span>
+                <input type="button" class="editPost-btn form-btn" value="Edit" />
+                <input type="button" class="viewChallenge-btn form-btn" value="View Challenge .pdf" />
+              </span>
             </div>
           </div>
         </div>
@@ -69,37 +102,30 @@
 
     <div class="col-md-4 col-md-offset-1">
 
-      <div class="side-wrap">
-        <h3 class="role role-side">Roles</h3>
-        <div class="row">
-          <span ng-click="includeRole('Design')" ng-class="{'selected': isSelected[0]['Design']}" class="Skillset-Body design">Design</span>
-          <span ng-click="includeRole('Engineering')" ng-class="{'selected': isSelected[0]['Engineering']}" class="Skillset-Body engineering">Engineering</span>
-          <span ng-click="includeRole('Business Dev')" ng-class="{'selected': isSelected[0]['BusinessDev']}" class="Skillset-Body businessDev">Business Development</span>
-          <span ng-click="includeRole('Growth')" ng-class="{'selected': isSelected[0]['Growth']}" class="Skillset-Body growth">Growth</span>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-2">
+          <div class="boxDetail">
+            <h3 class="boxNumber">30</h3>
+            <p class="boxTitle">
+              Total Views
+            </p>
+          </div>
         </div>
+        <div class="col-md-4">
+          <div class="boxDetail">
+            <h3 class="boxNumber">5</h3>
+            <p class="boxTitle">
+              Applied
+            </p>
+          </div>
+        </div>
+
       </div>
 
       <div class="side-wrap">
-        <h3 class="role role-side">Locations</h3>
-        <div class="row">
-          <span ng-click="includeRole('Denver')" ng-class="{'selected': isSelected[0]['Denver']}" class="Skillset-Body">Denver</span>
-          <span ng-click="includeRole('Boulder')" ng-class="{'selected': isSelected[0]['Boulder']}" class="Skillset-Body">Boulder</span>
-          <span ng-click="includeRole('Fort Collins')" ng-class="{'selected': isSelected[0]['FortCollins']}" class="Skillset-Body">Fort Collins</span>
-          <span ng-click="includeRole('Colorado Springs')" ng-class="{'selected': isSelected[0]['ColoradoSprings']}" class="Skillset-Body">Colorado Springs</span>
-        </div>
-      </div>
-
-      <div class="side-wrap">
-        <h3 class="role role-side">Job Type</h3>
-        <div class="row">
-          <span ng-click="includeRole('Contract')" ng-class="{'selected': isSelected[0]['Contract']}" class="Skillset-Body">Contract</span>
-          <span ng-click="includeRole('Part Time')" ng-class="{'selected': isSelected[0]['PartTime']}" class="Skillset-Body">Part Time</span>
-          <span ng-click="includeRole('Full Time')" ng-class="{'selected': isSelected[0]['FullTime']}" class="Skillset-Body">Full Time</span>
-          <span ng-click="includeRole('Brand Ambassador')" ng-class="{'selected': isSelected[0]['BrandAmbassador']}" class="Skillset-Body">Brand Ambassador</span>
-        </div>
-      </div>
-
-      <div class="Ad">
+        <h3 class="role role-side">Account Settings</h3>
+        <input type="button" class="transfer-btn form-btn" value="Transfer Company Account Ownership" />
+        <input type="button" class="remove-btn form-btn" value="Remove All Postings" />
       </div>
 
       <div class="footer">
@@ -113,6 +139,7 @@
 </div>
 
 <!-- Apply for Posting -->
+<!-- Need to turn this into a similar posting with actual detail -->
 <script type="text/ng-template" id="apply.html"
   <div class="lightBox">
     <div class="apply">

@@ -7,10 +7,13 @@ var router = express.Router();
 
 router.get('/:id', function(req, res, next){
   var companyID = req.params.id;
-  console.log('companyID', companyID);
-  posts.getCompanyPosts(companyID).then(function(data){
-    res.json(data);
-  })
+  posts.getCompanyPosts(companyID)
+  // .then(function(){
+  //   posts.getPostApplicants(postID)
+    .then(function(data){
+      res.json(data);
+    })
+  // })
 });
 
 module.exports = router;

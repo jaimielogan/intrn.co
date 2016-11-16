@@ -619,3 +619,104 @@ input, .form-control {
   border: solid 1px #44d0a5;
   color: #44d0a5;
 }
+
+.transfer-btn {
+  border: 1px solid #737373;
+  color: #737373;
+}
+
+.remove-btn {
+  border: 1px solid #d87441;
+  color: #d87441;
+  margin: 10px 0;
+}
+
+.boxDetail{
+  height: 75px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #9b9b9b;
+}
+
+.boxNumber{
+  font-family: Assistant;
+  font-size: 30px;
+  font-weight: 300;
+  color: #575757;
+  text-align: center;
+  font-style: normal;
+  margin: 10px 0;
+}
+
+.boxTitle{
+  font-family: Assistant;
+  font-size: 14px;
+  font-weight: bold;
+  color: #575757;
+  text-align: center;
+  margin-top: -5px;
+}
+
+.applicants {
+  margin-top: 15px;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 15px;
+}
+
+.applicantName{
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: 800;
+  color: #575757;
+}
+
+.appliedDate{
+  font-family: Assistant;
+  font-size: 15px;
+  font-weight: normal;
+  color: #9b9b9b;
+  text-align: left;
+}
+
+.viewApplication a, .contactApplicant a{
+  font-family: Assistant;
+   font-size: 15px;
+   font-weight: normal;
+   text-align: right;
+   color: #737373;
+}
+
+.removeApplicant{
+  width: 14px;
+  height: 14px;
+  color: #737373;
+}
+
+.removePost-btn{
+  width: 81px;
+  border-radius: 20px;
+  border: solid 1px #d87441;
+  color: #d87441
+}
+
+.expiration{
+  font-family: Assistant;
+  font-size: 15px;
+  color: #9b9b9b;
+  width: 130px;
+  margin: 0;
+}
+
+.editPost-btn{
+  width: 60px;
+  border-radius: 18px;
+  border: solid 1px #925cc2;
+  color: #925cc2;
+}
+
+.viewChallenge-btn{
+  width: 156px;
+  border-radius: 20px;
+  border: solid 1px #737373;
+  color: #737373;
+}

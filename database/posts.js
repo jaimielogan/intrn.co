@@ -54,7 +54,14 @@ var query = {
       .leftJoin('types', 'posts.type_id', 'types.id')
       .leftJoin('challenges', 'posts.id', 'challenges.post_id')
       .leftJoin('locations', 'posts.location_id', 'locations.id')
-      .leftJoin('companies', 'posts.company_id', 'companies.id').where('company_id', companyID);
+      .leftJoin('companies', 'posts.company_id', 'companies.id')
+      .where('company_id', companyID);
+  },
+
+  getPostApplicants: function(postID){
+    return knex('posts').select('applicants.first_name')
+      .innerJoin('applicants', 'applicants.post_id', 'post.id')
+      .where('post.id', postID); 
   }
 };
 
