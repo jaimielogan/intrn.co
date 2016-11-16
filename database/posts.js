@@ -55,13 +55,14 @@ var query = {
       .leftJoin('challenges', 'posts.id', 'challenges.post_id')
       .leftJoin('locations', 'posts.location_id', 'locations.id')
       .leftJoin('companies', 'posts.company_id', 'companies.id')
-      .where('company_id', companyID);
+      .where('company_id', companyID)
+
   },
 
   getPostApplicants: function(postID){
-    return knex('posts').select('applicants.first_name')
-      .innerJoin('applicants', 'applicants.post_id', 'post.id')
-      .where('post.id', postID); 
+    return knex('posts').select()
+      .innerJoin('applicants', 'applicants.post_id', 'posts.id')
+      .where('posts.id', postID);
   }
 };
 

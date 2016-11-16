@@ -67,12 +67,19 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
     });
   };
 
-  // posts.getPostApplicants = function(postID, cb){
-  //   var url = '/companies/' + postID;
-  //   $http.get(url).success(function(data){
-  //     cb(data);
-  //   });
-  // };
+  posts.getPostApplicants = function(postID, cb){
+    var url = '/companies/'+postID+'/applicants';
+    $http.get(url).success(function(data){
+      cb(data);
+    });
+  };
+
+  posts.removeApplicant = function(applicantID, cb){
+    var url = '/applications/'+applicantID;
+    $http.delete(url).success(function(data) {
+      cb(data);
+    })
+  }
 
   return posts;
 }]);

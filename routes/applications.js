@@ -6,9 +6,6 @@ var applicationdb = require('../database/applicants.js')
 var router = express.Router();
 
 router.post('/', function(req, res, next){
-  console.log('req.body', req.body);
-  console.log('req.files', req.files);
-
   var date = Date.now();
   //Challenge Response
   var challengeFile = req.files.challengeFile;
@@ -44,6 +41,14 @@ router.post('/', function(req, res, next){
           res.json(data);
         })
       })
+    })
+});
+
+router.delete('/:id', function(req, res, next) {
+  var applicantID = req.params.id;
+  applicationdb.removeApplicant(applicantID)
+    .then(function(data) {
+      res.json(data);
     })
 });
 

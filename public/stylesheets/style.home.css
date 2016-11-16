@@ -705,6 +705,7 @@ input, .form-control {
   color: #9b9b9b;
   width: 130px;
   margin: 0;
+  padding-left: 15px;
 }
 
 .editPost-btn{
@@ -712,6 +713,7 @@ input, .form-control {
   border-radius: 18px;
   border: solid 1px #925cc2;
   color: #925cc2;
+  margin-right: 5px;
 }
 
 .viewChallenge-btn{
@@ -719,4 +721,8 @@ input, .form-control {
   border-radius: 20px;
   border: solid 1px #737373;
   color: #737373;
+}
+
+.removeApplicant:hover {
+  cursor: pointer;
 }

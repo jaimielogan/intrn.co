@@ -33,16 +33,17 @@
           </div>
 
           <div class="postDetail" ng-show="view.viewDetails[post.id]">
+
             <div class="applicants">
-              <div class="row">
+              <div class="row" ng-repeat="applicant in applicants">
                 <div class="col-md-3">
                   <p class="applicantName">
-                    Joe Smith
+                    {{applicant.first_name}} {{applicant.last_name}}
                   </p>
                 </div>
                 <div class="col-md-3">
                   <p class="appliedDate">
-                    July 3
+                    {{applicant.created_at | date: 'MMMM d'}}
                   </p>
                 </div>
                 <div class="col-md-3">
@@ -52,16 +53,17 @@
                 </div>
                 <div class="col-md-2">
                   <p class="contactApplicant">
-                    <a href="#">Contact</a>
+                    <a ng-href="mailto:{{applicant.email}}">Contact</a>
                   </p>
                 </div>
                 <div class="col-md-1">
-                  <p class="removeApplicant">
-                    X
+                  <p class="removeApplicant" ng-click="removeApplicant(applicant.id)">
+                    <i class="fa fa-times" aria-hidden="true"></i>
                   </p>
                 </div>
               </div>
             </div>
+
             <div class="description">
               <h3 class="detailHeader">What you'd do with us</h3>
               <p class="detailContent">
@@ -80,16 +82,22 @@
                 {{post.bio}}
               </p>
             </div>
-            <div class="postButtons row">
-              <input type="button" class="removePost-btn form-btn" value="Remove" />
-              <p class="expiration">
-                Expires on {date}
-              </p>
-              <span>
+
+            <div class="postButtons row clearfix">
+
+              <span class="pull-left">
+                <input type="button" class="removePost-btn form-btn" value="Remove" />
+                <span class="expiration">
+                  Expires on {{post.exp_at | date: 'MMMM d'}}
+                </span>
+              </span>
+
+              <span class="pull-right">
                 <input type="button" class="editPost-btn form-btn" value="Edit" />
                 <input type="button" class="viewChallenge-btn form-btn" value="View Challenge .pdf" />
               </span>
             </div>
+
           </div>
         </div>
       </div>
@@ -105,7 +113,7 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-2">
           <div class="boxDetail">
-            <h3 class="boxNumber">30</h3>
+            <h3 class="boxNumber">{{view.totalViews}}</h3>
             <p class="boxTitle">
               Total Views
             </p>
@@ -113,7 +121,7 @@
         </div>
         <div class="col-md-4">
           <div class="boxDetail">
-            <h3 class="boxNumber">5</h3>
+            <h3 class="boxNumber">{{view.totalApplicants}}</h3>
             <p class="boxTitle">
               Applied
             </p>

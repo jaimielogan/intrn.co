@@ -1,4 +1,4 @@
-var app = angular.module('intrn', ['ui.router', 'ngFileUpload', 'ui.bootstrap']);
+var app = angular.module('intrn', ['ui.router', 'ngFileUpload', 'ui.bootstrap', 'angularMoment']);
 
 app.run(['$rootScope', '$state', '$stateParams',
   function($rootScope, $state, $stateParams) {
