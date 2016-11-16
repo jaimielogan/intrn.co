@@ -79,7 +79,53 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
     $http.delete(url).success(function(data) {
       cb(data);
     })
-  }
+  };
+
+  posts.removePost = function(postID, cb){
+    var url = '/posts/'+postID;
+    $http.delete(url).success(function(data){
+      cb(data);
+    })
+  };
+
+  posts.getPost = function(postID, cb){
+    var url = '/posts/'+postID;
+    $http.get(url).success(function(data){
+      cb(data);
+    })
+  };
+
+  posts.editPost = function(input, file){
+    var postID = input.postID;
+    if(file){
+      file.upload = Upload.upload({
+        url: '/posts',
+        data: {
+          file: file,
+          jobTitle : input.jobTitle,
+          companyName : input.companyName,
+          companyIndustry : input.companyIndustry,
+          comapnyWebsite : input.companyWebsite,
+          role_id : input.role_id,
+          type_id : input.type_id,
+          location_id : input.location_id,
+          responsibilities : input.responsibilities,
+          requirements : input.requirements,
+          companyInfo : input.companyInfo
+        }
+      })
+      .success(function(response){
+        $state.go('home');
+      });
+    } else{
+      var url = '/posts/'+postID+'/edit';
+      $http.put(url, input).success(function(data){
+        cb(data);
+      })
+    };
+
+  };
+
 
   return posts;
 }]);

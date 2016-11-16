@@ -86,14 +86,16 @@
             <div class="postButtons row clearfix">
 
               <span class="pull-left">
-                <input type="button" class="removePost-btn form-btn" value="Remove" />
+                <input type="button" class="removePost-btn form-btn" value="Remove" ng-click="removePost(post.id)" />
                 <span class="expiration">
                   Expires on {{post.exp_at | date: 'MMMM d'}}
                 </span>
               </span>
 
               <span class="pull-right">
-                <input type="button" class="editPost-btn form-btn" value="Edit" />
+                <a ng-href="/post/{{post.id}}/edit">
+                  <input type="button" class="editPost-btn form-btn" value="Edit" />
+                </a>
                 <input type="button" class="viewChallenge-btn form-btn" value="View Challenge .pdf" />
               </span>
             </div>

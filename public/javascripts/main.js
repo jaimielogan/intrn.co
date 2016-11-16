@@ -17,13 +17,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compi
       .state('post', {
         url: '/post',
         controller: 'postCtrl',
-        templateUrl: './templates/post.html'
+        templateUrl: '/templates/post.html'
       })
       .state('company', {
         url: '/company/:id',
         controller: 'CompanyCtrl',
         templateUrl: '/templates/companyPage.html'
-      });
+      })
+      .state('postEdit', {
+        url: '/post/:id/edit',
+        controller: 'postEditCtrl',
+        templateUrl: '/templates/post.html'
+      })
 
       $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|fil‌​e|blob|ftp|mailto|ch‌​rome-extension):/);
 

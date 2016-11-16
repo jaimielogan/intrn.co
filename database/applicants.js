@@ -20,6 +20,10 @@ var query = {
 
   removeApplicant: function(applicantID) {
     return knex('applicants').where('id', applicantID).del();
+  },
+
+  removeApplicants: function(postID){
+    return knex('applicants').where('post_id', postID).del();
   }
 };
 

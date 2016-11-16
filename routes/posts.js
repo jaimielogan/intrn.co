@@ -1,7 +1,8 @@
 var express = require('express');
 var postdb = require('../database/posts.js');
-var challengdb = require('../database/challenges.js');
+var challengedb = require('../database/challenges.js');
 var compdb = require('../database/companies.js');
+var applicantdb = require('../database/applicants.js');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
@@ -49,12 +50,56 @@ router.post('/', function(req, res, next) {
           res.status(500).send(err);
         }
       });
-    challengdb.addChallenge(postId, newFilename)
+    challengedb.addChallenge(postId, newFilename)
       .then(function(data) {
         res.json(data);
       })
     })
   });
 });
+
+router.delete('/:id', function(req,res,next){
+  var postID = req.params.id;
+  challengedb.removeChallenge(postID)
+  .then(function(data){
+    return data;
+  })
+  .then(function(data){
+    return applicantdb.removeApplicants(postID);
+  })
+  .then(function(data){
+    return postdb.removePost(postID);
+  })
+  .then(function(data){
+    res.json(data);
+  });
+});
+
+router.get('/:id', function(req,res,next){
+  var postID = req.params.id;
+  postdb.getPost(postID)
+  .then(function(data){
+    res.json(data);
+  })
+});
+
+router.put('/:id/edit', function(req,res,next){
+  var postID = req.params.id;
+  console.log('req.body', req.body);
+  console.log('req.files', req.files);
+
+  postdb.editPost(postID, req.body.jobTitle,
+    req.body.role_id, req.body.location_id,
+    req.body.type_id, companyId,
+    req.body.responsibilities, req.body.requirements,
+    req.body.companyInfo)
+    .then(function(data){
+      res.json(data);
+      // if(req.files){
+      //   // This one will add to posts, move pdf, and then add challenge
+      //   break;
+      // }
+    })
+})
 
 module.exports = router;

@@ -10,11 +10,6 @@ app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment',
   $scope.view.totalViews = 0;
   $scope.view.totalApplicants = 0;
 
-  $scope.fakeDate = '2016-11-16T15:27:40.784Z';
-  // $scope.fakeDate = $scope.fakeDate.toISOString();
-  $scope.newD = moment(new Date($scope.fakeDate)).add(90, 'days');
-  console.log($scope.newD);
-
   var companyID = Number($stateParams.id);
 
   posts.getCompanyPosts(companyID, function(data) {
@@ -41,11 +36,18 @@ app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment',
 
   $scope.removeApplicant = function(applicantID) {
     posts.removeApplicant(applicantID, function(data) {
-      //delete?
       $scope.applicants = $scope.applicants.filter(function(elem) {
         return elem.id != applicantID;
       });
     });
-  }
+  };
+
+  $scope.removePost = function(postID){
+    posts.removePost(postID, function(data){
+      $scope.postData = $scope.postData.filter(function(elem){
+        return elem.id != postID;
+      });
+    });
+  }; 
 
 }])
