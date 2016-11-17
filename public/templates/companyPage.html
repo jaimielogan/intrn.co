@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-md-3">
                   <p class="viewApplication">
-                    <a href="#">View Application</a>
+                    <a href="#" ng-click="toggleApplication(applicant.id)">View Application</a>
                   </p>
                 </div>
                 <div class="col-md-2">
@@ -96,7 +96,9 @@
                 <a ng-href="/post/{{post.id}}/edit">
                   <input type="button" class="editPost-btn form-btn" value="Edit" />
                 </a>
-                <input type="button" class="viewChallenge-btn form-btn" value="View Challenge .pdf" />
+                <a target="_self" href="/pdfs/challenges/{{post.challenge_link}}" download>
+                  <input type="button" class="viewChallenge-btn form-btn" value="View Challenge .pdf" >
+                </a>
               </span>
             </div>
 
@@ -135,7 +137,7 @@
       <div class="side-wrap">
         <h3 class="role role-side">Account Settings</h3>
         <input type="button" class="transfer-btn form-btn" value="Transfer Company Account Ownership" />
-        <input type="button" class="remove-btn form-btn" value="Remove All Postings" />
+        <input type="button" class="remove-btn form-btn" value="Remove All Postings" ng-click="removeAllPosts()" />
       </div>
 
       <div class="footer">
@@ -150,75 +152,85 @@
 
 <!-- Apply for Posting -->
 <!-- Need to turn this into a similar posting with actual detail -->
-<script type="text/ng-template" id="apply.html"
+<script type="text/ng-template" id="application.html"
   <div class="lightBox">
     <div class="apply">
-      <h1 class="previewHeader">Application for {{view.applyTitle}} at {{view.applyCompanyName}}</h1>
+      <h1 class="previewHeader">Application</h1>
       <form>
         <input type="hidden" value="{{view.applyID}}" name="applyID">
         <div class="row applyRow">
           <div class="col-md-4">
             <label for="firstName">First Name*</label>
-            <input type="text" name="firstName" id="firstName" placeholder="Joe" class="form-control" ng-model="view.firstName">
+            <p id="firstName">
+              {{applicantInfo.first_name}}
+            </p>
           </div>
           <div class="col-md-4">
             <label for="lastName">Last Name*</label>
-            <input type="text" name="lastName" id="lastName" placeholder="Schmoe" class="form-control" ng-model="view.lastName">
+            <p id="lastName">
+              {{applicantInfo.last_name}}
+            </p>
           </div>
           <div class="col-md-4">
             <label for="school">School</label>
-            <select class="dropDown form-control" ng-model="view.school">
-              <option selected value="University of Denver">University of Denver</option>
-              <option value="University of Colorado at Denver">University of Colorado at Denver</option>
-              <option value="University of Colorado at Boulder">University of Colorado at Boulder</option>
-              <option value="Colorado State University">Colorado State University</option>
-            </select>
+            <p id="school">
+              {{applicantInfo.school}}
+            </p>
           </div>
         </div>
 
         <div class="row applyRow">
           <div class="col-md-8">
             <label for="email">Primary Email*</label>
-            <input type="text" name="email" id="email" placeholder="joe@schmoe.com" class="form-control" ng-model="view.email">
+            <p id="email">
+              {{applicantInfo.email}}
+            </p>
           </div>
           <div class="col-md-4">
             <label for="phone">Phone Number*</label>
-            <input type="text" name="phone" id="phone" placeholder="(303)555-5555" class="form-control" ng-model="view.number">
+            <p id="phone">
+              {{applicantInfo.number}}
+            </p>
           </div>
         </div>
 
-        <div class="row lastRow">
+        <div class="row">
           <div class="col-md-4">
             <label for="twitter">Twitter</label>
-            <input type="text" name="twitter" id="twitter" placeholder="@joe" class="form-control" ng-model="view.twitter">
+            <p id="twitter">
+              {{applicantInfo.twitter}}
+            </p>
           </div>
           <div class="col-md-4">
             <label for="linkedin">LinkedIn</label>
-            <input type="text" name="linkedin" id="linkedin" placeholder="joeschmoe" class="form-control" ng-model="view.linkedin">
+            <p id="linkedin">
+              {{applicantInfo.linkedin}}
+            </p>
           </div>
           <div class="col-md-4">
             <label for="github">Github</label>
-            <input type="text" name="github" id="github" placeholder="@joe" class="form-control" ng-model="view.github">
+            <p id="github">
+              {{applicantInfo.github}}
+            </p>
           </div>
         </div>
-
-        <div class="uploadApplication">
-          <div class="fileContainer">
-            <input type="file" name="challengepdf" class="fileUpload" value="" ngf-select ng-model="challengepdf">
-            <input type="button" class="uploadButton edit uploadChallenge" value="Upload Challenge *.pdf">
-          </div>
-
-          <div class="fileContainer">
-            <input type="file" name="resumepdf" class="fileUpload" value="" ngf-select ng-model="resumepdf">
-            <input type="button" class="uploadButton edit uploadResume" value="Upload Resume">
-          </div>
-        </div>
-
-        <div class="form-group">
+        <div class="lastRow">
           <label for="about">
             Say something about yourself!
           </label>
-          <textarea name="about" class="form-control" rows="4" placeholder="I love to code 24/7 and I’m on the cycling team." id="about" ng-model="view.about"></textarea>
+          <p id="about">
+            {{applicantInfo.about}}
+          </p>
+        </div>
+
+
+        <div class="uploadApplication">
+          <a target="_self" href="/pdfs/applications/challenges/{{applicantInfo.challenge_response}}" download>
+            <input type="button" class="uploadButton edit uploadChallenge" value="Download Challenge .pdf" >
+          </a>
+          <a target="_self" href="/pdfs/applications/resumes/{{applicantInfo.resume_response}}" download>
+            <input type="button" class="uploadButton edit uploadResume" value="Download Resume .pdf" >
+          </a>
         </div>
 
         <p class="termsCond">
@@ -227,9 +239,8 @@
             Privacy Policy and Terms of Service.
           </a>
         </p>
-        <div class="uploadApplication">
-          <input type="button" class="edit uploadButton" value="Maybe Later" ng-click="cancel()">
-          <input type="button" class="edit uploadButton apply" value="Apply" ng-click="apply(challengepdf, resumepdf)">
+        <div class="closeButton">
+          <input type="button" class="edit uploadButton" value="Close Application" ng-click="cancel()">
         </div>
 
       </form>

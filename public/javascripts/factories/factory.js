@@ -123,8 +123,21 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
         cb(data);
       })
     };
-
   };
+
+  posts.removeAllPosts = function(companyID, cb){
+    var url = '/companies/'+companyID+'/delete';
+    $http.delete(url).success(function(data){
+      cb(data);
+    })
+  };
+
+  posts.getApplicantInfo = function(applicantID, cb){
+    var url = '/applications/'+applicantID;
+    $http.get(url).success(function(data) {
+      cb(data);
+    })
+  }
 
 
   return posts;

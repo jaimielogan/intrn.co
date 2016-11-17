@@ -93,6 +93,12 @@ var query = {
       description: description,
       skills: skills,
       bio: bio})
+  },
+
+  removeAllPosts: function(companyID){
+    return knex('posts')
+    .where('company_id', companyID)
+    .del(); 
   }
 };
 

@@ -1,7 +1,7 @@
 var app = angular.module('intrn');
 
-app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment',
-  function($scope, posts, $stateParams, moment){
+app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment', '$uibModal',
+  function($scope, posts, $stateParams, moment, $uibModal){
   $scope.view = {};
   $scope.post = posts.posts;
   $scope.postData = [];
@@ -9,12 +9,13 @@ app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment',
   $scope.applicants = [];
   $scope.view.totalViews = 0;
   $scope.view.totalApplicants = 0;
+  var modalInstance;
 
   var companyID = Number($stateParams.id);
+  $scope.view.companyID = companyID;
 
   posts.getCompanyPosts(companyID, function(data) {
     $scope.postData = data;
-
     if ($scope.postData.length) {
       $scope.postData.forEach(function(elem, i, arr) {
         elem.exp_at = Date.parse(moment(new Date(elem.updated_at)).add(90, 'days'));
@@ -48,6 +49,27 @@ app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment',
         return elem.id != postID;
       });
     });
-  }; 
+  };
+
+  $scope.removeAllPosts = function(){
+    posts.removeAllPosts($scope.view.companyID, function(data){
+      $scope.postData = []
+    })
+  };
+
+  $scope.toggleApplication = function(applicantID){
+    modalInstance = $uibModal.open({
+      templateUrl: 'application.html',
+      scope: $scope
+    });
+    posts.getApplicantInfo(applicantID, function(data){
+      $scope.applicantInfo = data[0];
+      console.log('applicantInfo', $scope.applicantInfo);
+    })
+  };
+
+  $scope.cancel = function(){
+    modalInstance.close();
+  }
 
 }])

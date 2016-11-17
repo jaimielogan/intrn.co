@@ -726,3 +726,8 @@ input, .form-control {
 .removeApplicant:hover {
   cursor: pointer;
 }
+
+.closeButton{
+  width: 240px;
+  margin: 0 auto 25px auto; 
+}

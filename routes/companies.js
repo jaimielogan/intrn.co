@@ -21,4 +21,12 @@ router.get('/:id', function(req, res, next){
   })
 });
 
+router.delete('/:id/delete', function(req,res,next){
+  var companyID = req.params.id;
+  posts.removeAllPosts(companyID)
+    .then(function(data){
+      res.json(data);
+    });
+})
+
 module.exports = router;

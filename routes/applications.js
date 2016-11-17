@@ -52,4 +52,12 @@ router.delete('/:id', function(req, res, next) {
     })
 });
 
+router.get('/:id', function(req,res,next){
+  var applicantID = req.params.id;
+  applicationdb.getApplicantInfo(applicantID)
+    .then(function(data){
+      res.json(data); 
+    })
+})
+
 module.exports = router;

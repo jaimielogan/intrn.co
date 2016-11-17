@@ -24,6 +24,10 @@ var query = {
 
   removeApplicants: function(postID){
     return knex('applicants').where('post_id', postID).del();
+  },
+
+  getApplicantInfo: function(applicantID){
+    return knex('applicants').where('id', applicantID);
   }
 };
 
