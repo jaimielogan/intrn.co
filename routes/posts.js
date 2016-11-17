@@ -84,21 +84,34 @@ router.get('/:id', function(req,res,next){
 });
 
 router.put('/:id/edit', function(req,res,next){
-  var postID = req.params.id;
-  console.log('req.body', req.body);
-  console.log('req.files', req.files);
+  var postID = Number(req.params.id);
 
   postdb.editPost(postID, req.body.jobTitle,
     req.body.role_id, req.body.location_id,
-    req.body.type_id, companyId,
+    req.body.type_id,
     req.body.responsibilities, req.body.requirements,
     req.body.companyInfo)
     .then(function(data){
-      res.json(data);
-      // if(req.files){
-      //   // This one will add to posts, move pdf, and then add challenge
-      //   break;
-      // }
+      compdb.updateCompany(req.body.companyName, req.body.companyIndustry, req.body.companyWebsite, req.body.companyID)
+      .then(function(data){
+        if(req.files){
+          var pdfFile = req.files.file;
+          var pdfFileName = req.files.file.name;
+          var date = Date.now();
+          var newFilename = date + '-' + pdfFileName;
+          var challengeLink = __dirname + '/../public/pdfs/challenges/' + newFilename;
+          pdfFile.mv(challengeLink, function(err) {
+            if (err) {
+              res.status(500).send(err);
+            }
+          });
+          challengedb.updateChallenge(postId, newFilename)
+          .then(function(data) {
+            res.json(data);
+          })
+        }
+        res.json(data);
+      })
     })
 })
 

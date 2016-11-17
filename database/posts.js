@@ -73,7 +73,7 @@ var query = {
     return knex('posts').select('roles.role', 'posts.id AS id', 'posts.title', 'locations.location',
             'types.type', 'posts.updated_at', 'companies.name', 'posts.views', 'posts.applicants',
             'posts.description' ,'posts.skills', 'posts.bio', 'companies.website', 'companies.industry',
-            'challenges.challenge_link')
+            'challenges.challenge_link', 'companies.id AS companyID')
     .leftJoin('roles', 'posts.role_id', 'roles.id')
     .leftJoin('types', 'posts.type_id', 'types.id')
     .leftJoin('challenges', 'posts.id', 'challenges.post_id')
@@ -82,17 +82,17 @@ var query = {
     .where('posts.id', postID);
   },
 
-  editPost: function(postID, title, role_id, location_id, type_id, company_id, description, skills, bio){
-      return knex('posts').update({title: title,
+  editPost: function(postID, title, role_id, location_id, type_id, description, skills, bio){
+    return knex('posts')
+      .where('id', postID)
+      .update({
+      title: title,
       role_id: role_id,
       location_id: location_id,
       type_id: type_id,
-      company_id: company_id,
-      views : 0,
-      applicants: 0,
       description: description,
       skills: skills,
-      bio: bio}).where('posts.id', postID);
+      bio: bio})
   }
 };
 

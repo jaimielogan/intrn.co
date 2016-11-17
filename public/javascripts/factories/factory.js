@@ -95,7 +95,7 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
     })
   };
 
-  posts.editPost = function(input, file){
+  posts.editPost = function(input, file, cb){
     var postID = input.postID;
     if(file){
       file.upload = Upload.upload({

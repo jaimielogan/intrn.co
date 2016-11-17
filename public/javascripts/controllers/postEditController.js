@@ -1,7 +1,7 @@
 var app = angular.module('intrn');
 
-app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams',
-  function($scope, posts, $stateParams){
+app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams', '$state', '$location',
+  function($scope, posts, $stateParams, $state, $location){
 
     $scope.view = {};
     $scope.view.date = Date.now();
@@ -11,7 +11,6 @@ app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams',
 
     posts.getPost($scope.view.postID, function(data) {
       $scope.postData = data;
-      console.log($scope.postData);
       $scope.view.jobTitle = $scope.postData[0].title;
       $scope.view.companyName = $scope.postData[0].name;
       $scope.view.companyIndustry = $scope.postData[0].industry;
@@ -72,8 +71,11 @@ app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams',
       var title = $scope.view.jobTitle;
       var companyName = $scope.view.companyName;
       var companyIndustry = $scope.view.companyIndustry;
-      var comapnyWebsite = $scope.view.companyWebsite;
+      var companyWebsite = $scope.view.companyWebsite;
       var role = $scope.view.filters.role;
+      var companyID = $scope.postData[0].companyID;
+      $scope.view.companyID = companyID;
+
       switch(role){
         case 'Design':
         $scope.view.role_id = 1;
@@ -122,7 +124,10 @@ app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams',
       var skills = $scope.view.requirements;
       var bio = $scope.view.companyInfo;
 
-      posts.editPost($scope.view, file);
+      posts.editPost($scope.view, file, function(data){
+        var url = '/company/'+companyID;
+        $location.path(url);
+      });
     };
   }
 ])

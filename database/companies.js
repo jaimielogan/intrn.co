@@ -8,6 +8,14 @@ var query = {
     'website': companyWebsite
   })
   .returning('id');
+},
+
+  updateCompany: function(companyName, companyIndustry, companyWebsite, companyID){
+    return knex('companies').update({'name': companyName,
+    'industry': companyIndustry,
+    'website': companyWebsite
+    })
+    .where('id', companyID)
   }
 };
 

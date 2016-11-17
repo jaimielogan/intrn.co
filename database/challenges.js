@@ -9,7 +9,15 @@ var query = {
   },
 
   removeChallenge: function(postID){
-    return knex('challenges').where('post_id', postID).del(); 
+    return knex('challenges').where('post_id', postID).del();
+  },
+
+  updateChallenge: function(postID, challengeLink){
+    return knex('challenges')
+    .where('post_id', postID)
+    .update({
+      challenge_link: challengeLink
+    })
   }
 };
 
