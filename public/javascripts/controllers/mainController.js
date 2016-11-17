@@ -70,6 +70,16 @@ app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', 'Upload', function($
   };
 
   $scope.apply = function(challengeFile, resumeFile){
+
+    $scope.challengeFileError = challengeFile === undefined ? true : false;
+    $scope.resumeFileError = resumeFile === undefined ? true : false;
+
+    $scope.formError = !$scope.view.firstName || !$scope.view.lastName || !$scope.view.school ||
+      !$scope.view.email || !$scope.view.number || !$scope.view.about
+      ? true : false;
+
+    if ($scope.formError || $scope.challengFileError || $scope.resumeFileError) return false;
+
     posts.apply($scope.view, challengeFile, resumeFile);
     modalInstance.close();
   }

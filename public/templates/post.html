@@ -5,34 +5,41 @@
     <h3 class="HeaderInfo">Intrn.co is the best way to reach qualified and motivated students. Get started with a new posting below.</h3>
   </div>
 
-  <form class="addForm" enctype="multipart/form-data">
+  <form name="postForm" class="addForm" enctype="multipart/form-data">
     <div class="row">
       <div class="col-md-7">
         <div class="clearfix">
 
-          <div class="form-group row">
-            <span class="col-md-6">
+          <div class="invalid" ng-show="formError">Please fill out missing information</div>
+          <div class="form-group row" >
+
+            <div class="col-md-6 form-group  post-input" ng-class="{'has-error' : postForm.jobTitle.$invalid && postForm.jobTitle.$dirty}">
               <label for="jobTitle">Title of your Job Posting</label>
-              <input type="text" name="jobTitle" class="form-control" placeholder="Job Title" id="jobTitle" ng-model="view.jobTitle">
-            </span>
-            <span class="col-md-6">
+              <input  type="text" name="jobTitle" class="form-control" placeholder="Job Title" id="jobTitle" ng-model="view.jobTitle" required>
+            </div>
+
+            <div class="col-md-6 form-group post-input" ng-class="{'has-error' : postForm.companyName.$invalid && postForm.companyName.$dirty}">
               <label for="companyName">Name of your company</label>
-              <input type="text" name="companyName" class="form-control" placeholder="Company Name" id="companyName" ng-model="view.companyName">
-            </span>
+              <input type="text" name="companyName" class="form-control" placeholder="Company Name" id="companyName" ng-model="view.companyName" required>
+            </div>
+
           </div>
 
           <div class="form-group row">
-            <span class="col-md-6">
+
+            <div class="col-md-6 form-group post-input" ng-class="{'has-error' : postForm.companyIndustry.$invalid && postForm.companyIndustry.$dirty}">
               <label for="companyName">Name of your company industry</label>
-              <input type="text" name="companyIndustry" class="form-control" placeholder="Company Industry" id="companyIndustry" ng-model="view.companyIndustry">
-            </span>
-            <span class="col-md-6">
+              <input type="text" name="companyIndustry" class="form-control" placeholder="Company Industry" id="companyIndustry" ng-model="view.companyIndustry" required>
+            </div>
+
+            <div class="col-md-6 form-group post-input" ng-class="{'has-error' : postForm.companyWebsite.$invalid && postForm.companyWebsite.$dirty}">
               <label for="companyWebsite">Company Website</label>
-              <input type="text" name="companyWebsite" class="form-control" placeholder="Company Website" id="companyWebiste" ng-model="view.companyWebsite">
-            </span>
+              <input type="text" name="companyWebsite" class="form-control" placeholder="Company Website" id="companyWebiste" ng-model="view.companyWebsite" required>
+            </div>
+
           </div>
 
-          <div class="form-group">
+          <div class="form-group" ng-class="{'has-error' : postForm.responsibilities.$invalid && postForm.responsibilities.$dirty}">
             <label for="responsibilities" class="label-space">
               What the candidate will do with you
               <div class="infoTip" ng-show="view.viewInfoTip[0]">
@@ -40,10 +47,10 @@
               </div>
               <span class="oval pull-right" ng-click="toggleInfoTip(0)" ng-class="{'ovalSelected': view.viewInfoTip[0]}">?</span>
             </label>
-            <textarea name="responsibilities" class="control-label col-md-12 form-control" rows="5" placeholder="Candidate Responsibilities" id="responsibilities" ng-model="view.responsibilities"></textarea>
+            <textarea name="responsibilities" class="control-label col-md-12 form-control" rows="5" placeholder="Candidate Responsibilities" id="responsibilities" ng-model="view.responsibilities" required></textarea>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" ng-class="{'has-error' : postForm.requirements.$invalid && postForm.requirements.$dirty}">
             <label for="requirements" class="label-space">
               What the candidate can probably already do
               <div class="infoTip" ng-show="view.viewInfoTip[1]">
@@ -51,10 +58,10 @@
               </div>
               <span class="oval pull-right" ng-click="toggleInfoTip(1)" ng-class="{'ovalSelected': view.viewInfoTip[1]}">?</span>
             </label>
-            <textarea name="requirements" class="control-label col-md-12 form-control" rows="3" placeholder="Candidate Requirements" id="requirements" ng-model="view.requirements"></textarea>
+            <textarea name="requirements" class="control-label col-md-12 form-control" rows="3" placeholder="Candidate Requirements" id="requirements" ng-model="view.requirements" required></textarea>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" ng-class="{'has-error' : postForm.companyInfo.$invalid && postForm.companyInfo.$dirty}">
             <label for="companyInfo" class="label-space">
               Perks, incentives, and compensation that the candidate can expect
               <div class="infoTip" ng-show="view.viewInfoTip[2]">
@@ -62,7 +69,7 @@
               </div>
               <span class="oval pull-right" ng-click="toggleInfoTip(2)" ng-class="{'ovalSelected': view.viewInfoTip[2]}">?</span>
             </label>
-            <textarea name="companyInfo" class="control-label col-md-12 form-control" rows="4" placeholder="Company Information" id="companyInfo" ng-model="view.companyInfo"></textarea>
+            <textarea name="companyInfo" class="control-label col-md-12 form-control" rows="4" placeholder="Company Information" id="companyInfo" ng-model="view.companyInfo" required></textarea>
           </div>
         </div>
 
@@ -83,7 +90,7 @@
         </div>
 
         <div class="side-wrap">
-          <h3 class="role role-side">Roles</h3>
+          <h3 class="role role-side">Roles <span class="invalid" ng-show="roleError">Please select a role</span></h3>
           <div class="row">
             <span ng-click="includeRole('Design')" ng-class="{'selected': view.filters.role == 'Design'}" class="Skillset-Body design">Design</span>
             <span ng-click="includeRole('Engineering')" ng-class="{'selected': view.filters.role == 'Engineering'}" class="Skillset-Body engineering">Engineering</span>
@@ -93,7 +100,7 @@
         </div>
 
         <div class="side-wrap">
-          <h3 class="role role-side">Locations</h3>
+          <h3 class="role role-side">Locations <span class="invalid" ng-show="locationError">Please select a location</span></h3>
           <div class="row">
             <span ng-click="includeLocation('Denver')" ng-class="{'selected': view.filters.location == 'Denver'}" class="Skillset-Body">Denver</span>
             <span ng-click="includeLocation('Boulder')" ng-class="{'selected': view.filters.location == 'Boulder'}" class="Skillset-Body">Boulder</span>
@@ -103,7 +110,7 @@
         </div>
 
         <div class="side-wrap">
-          <h3 class="role role-side">Job Type</h3>
+          <h3 class="role role-side">Job Type <span class="invalid" ng-show="typeError">Please select a job type</span></h3>
           <div class="row">
             <span ng-click="includeType('Contract')" ng-class="{'selected': view.filters.type == 'Contract'}" class="Skillset-Body">Contract</span>
             <span ng-click="includeType('Part Time')" ng-class="{'selected': view.filters.type == 'Part Time'}" class="Skillset-Body">Part Time</span>
@@ -114,7 +121,7 @@
 
         <div>
           <div class="side-wrap">
-            <h3 class="role role-side label-space">Upload Challenge
+            <h3 class="role role-side label-space">Upload Challenge <span class="invalid" ng-show="fileError">Please select a file</span>
               <div class="infoTip infoTipSide" ng-show="view.viewInfoTip[3]">
                 [INSERT URL FOR DIRECTIONS AND SAMPLE]
               </div>

@@ -37,6 +37,17 @@ app.controller('postCtrl', ['$scope', 'posts', 'Upload', function($scope, posts,
 
   $scope.view.viewPreview = false;
   $scope.togglePreview = function(){
+
+    $scope.fileError = $scope.uploadpdf === undefined ? true : false;
+    $scope.roleError = $scope.view.filters.role ? false : true;
+    $scope.locationError = $scope.view.filters.location ? false : true;
+    $scope.typeError = $scope.view.filters.type ? false : true;
+    $scope.formError = !$scope.view.jobTitle || !$scope.view.companyName || !$scope.view.companyIndustry ||
+      !$scope.view.companyWebsite || !$scope.view.responsibilities || !$scope.view.requirements || !$scope.view.companyInfo
+      ? true : false;
+
+    if ($scope.roleError || $scope.locationError || $scope.typeError || $scope.formError || $scope.fileError) return false;
+
     $scope.view.viewPreview = !$scope.view.viewPreview;
     if($scope.view.viewPreview){
       $(window).scrollTop(0);

@@ -55,6 +55,17 @@ app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams', '$state', '$l
     };
 
     $scope.togglePreview = function(){
+      $scope.roleError = $scope.view.filters.role ? false : true;
+      $scope.locationError = $scope.view.filters.location ? false : true;
+      $scope.typeError = $scope.view.filters.type ? false : true;
+      $scope.formError = !$scope.view.jobTitle || !$scope.view.companyName || !$scope.view.companyIndustry ||
+        !$scope.view.companyWebsite || !$scope.view.responsibilities || !$scope.view.requirements || !$scope.view.companyInfo
+        ? true : false;
+
+      console.log($scope.formError); 
+
+      if ($scope.roleError || $scope.locationError || $scope.typeError || $scope.formError) return false;
+
       $scope.view.viewPreview = !$scope.view.viewPreview;
       if($scope.view.viewPreview){
         $(window).scrollTop(0);

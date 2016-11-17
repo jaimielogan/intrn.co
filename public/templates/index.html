@@ -117,21 +117,24 @@
   <div class="lightBox">
     <div class="apply">
       <h1 class="previewHeader">Application for {{view.applyTitle}} at {{view.applyCompanyName}}</h1>
-      <form>
+      <form name="applyForm">
         <input type="hidden" value="{{view.applyID}}" name="applyID">
+        <div class="invalid" ng-show="formError">Please fill out missing information</div>
         <div class="row applyRow">
-          <div class="col-md-4">
+          <div class="col-md-4 form-group" ng-class="{'has-error' : applyForm.firstName.$invalid && applyForm.firstName.$dirty}">
             <label for="firstName">First Name*</label>
-            <input type="text" name="firstName" id="firstName" placeholder="Joe" class="form-control" ng-model="view.firstName">
+            <input type="text" name="firstName" id="firstName" placeholder="Joe" class="form-control" ng-model="view.firstName" required>
           </div>
-          <div class="col-md-4">
+
+          <div class="col-md-4 form-group" ng-class="{'has-error' : applyForm.lastName.$invalid && applyForm.lastName.$dirty}">
             <label for="lastName">Last Name*</label>
-            <input type="text" name="lastName" id="lastName" placeholder="Schmoe" class="form-control" ng-model="view.lastName">
+            <input type="text" name="lastName" id="lastName" placeholder="Schmoe" class="form-control" ng-model="view.lastName" required>
           </div>
-          <div class="col-md-4">
+
+          <div class="col-md-4 form-group">
             <label for="school">School</label>
-            <select class="dropDown form-control" ng-model="view.school">
-              <option selected value="University of Denver">University of Denver</option>
+            <select class="dropDown form-control" ng-model="view.school" ng-init="view.school='University of Denver'">
+              <option value="University of Denver" ng-selected="view.school">University of Denver</option>
               <option value="University of Colorado at Denver">University of Colorado at Denver</option>
               <option value="University of Colorado at Boulder">University of Colorado at Boulder</option>
               <option value="Colorado State University">Colorado State University</option>
@@ -140,13 +143,14 @@
         </div>
 
         <div class="row applyRow">
-          <div class="col-md-8">
+          <div class="col-md-8 form-group" ng-class="{'has-error' : applyForm.email.$invalid && applyForm.email.$dirty}">
             <label for="email">Primary Email*</label>
-            <input type="text" name="email" id="email" placeholder="joe@schmoe.com" class="form-control" ng-model="view.email">
+            <input type="text" name="email" id="email" placeholder="joe@schmoe.com" class="form-control" ng-model="view.email" required>
           </div>
-          <div class="col-md-4">
+
+          <div class="col-md-4 form-group" ng-class="{'has-error' : applyForm.phone.$invalid && applyForm.phone.$dirty}">
             <label for="phone">Phone Number*</label>
-            <input type="text" name="phone" id="phone" placeholder="(303)555-5555" class="form-control" ng-model="view.number">
+            <input type="text" name="phone" id="phone" placeholder="(303)555-5555" class="form-control" ng-model="view.number" required>
           </div>
         </div>
 
@@ -166,6 +170,8 @@
         </div>
 
         <div class="uploadApplication">
+          <div class="invalid" ng-show="challengeFileError">Please upload your challenge file</div>
+          <div class="invalid" ng-show="resumeFileError">Please upload your resume file</div>
           <div class="fileContainer">
             <input type="file" name="challengepdf" class="fileUpload" value="" ngf-select ng-model="challengepdf">
             <input type="button" class="uploadButton edit uploadChallenge" value="Upload Challenge *.pdf">
@@ -173,15 +179,15 @@
 
           <div class="fileContainer">
             <input type="file" name="resumepdf" class="fileUpload" value="" ngf-select ng-model="resumepdf">
-            <input type="button" class="uploadButton edit uploadResume" value="Upload Resume">
+            <input type="button" class="uploadButton edit uploadResume" value="Upload Resume *.pdf">
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error' : applyForm.about.$invalid && applyForm.about.$dirty}">
           <label for="about">
             Say something about yourself!
           </label>
-          <textarea name="about" class="form-control" rows="4" placeholder="I love to code 24/7 and I’m on the cycling team." id="about" ng-model="view.about"></textarea>
+          <textarea name="about" class="form-control" rows="4" placeholder="I love to code 24/7 and I’m on the cycling team." id="about" ng-model="view.about" required></textarea>
         </div>
 
         <p class="termsCond">
@@ -194,7 +200,6 @@
           <input type="button" class="edit uploadButton" value="Maybe Later" ng-click="cancel()">
           <input type="button" class="edit uploadButton apply" value="Apply" ng-click="apply(challengepdf, resumepdf)">
         </div>
-
       </form>
     </div>
   </div>

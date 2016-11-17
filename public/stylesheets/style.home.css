@@ -729,5 +729,20 @@ input, .form-control {
 
 .closeButton{
   width: 240px;
-  margin: 0 auto 25px auto; 
+  margin: 0 auto 25px auto;
+}
+
+.post-input{
+  display: inline-block;
+}
+
+.invalid {
+  color: #FF4136;
+  font-size: 13px;
+  margin-left: 2px;
+}
+
+div.invalid {
+  text-align: center;
+  padding-bottom: 5px;
 }
