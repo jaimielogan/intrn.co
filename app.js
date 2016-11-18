@@ -32,7 +32,7 @@ app.use('/bower_components',
   express.static(path.join(__dirname, '/bower_components')));
 app.use(fileUpload());
 app.use(session({
-  secret: process.env.GOOGLE_CLIENT_SECRET,
+  secret: 'keyboard cat',
   saveUninitialized: true,
   resave: false
 }))

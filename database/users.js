@@ -7,10 +7,11 @@ var query = {
 
   addUser: function(profile, accessToken){
     return knex('users').insert({
-      googleID: profile.id,
+      google_id: profile.id,
       token: accessToken,
-      name: profile.displayName,
-      email: profile.emails[0].value,
+      first_name: profile.name.givenName,
+      last_name: profile.name.familyName,
+      email: profile.email,
     }, "*")
   },
 
