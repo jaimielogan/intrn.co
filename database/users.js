@@ -11,7 +11,7 @@ var query = {
       token: accessToken,
       name: profile.displayName,
       email: profile.emails[0].value,
-    })
+    }, "*")
   },
 
   getUserById: function(googleID){

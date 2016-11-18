@@ -13,6 +13,7 @@ var users = require('./routes/users');
 var posts = require('./routes/posts');
 var applications = require('./routes/applications');
 var companies = require('./routes/companies');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -31,7 +32,7 @@ app.use('/bower_components',
   express.static(path.join(__dirname, '/bower_components')));
 app.use(fileUpload());
 app.use(session({
-  secret: "",
+  secret: process.env.GOOGLE_CLIENT_SECRET,
   saveUninitialized: true,
   resave: false
 }))
@@ -43,6 +44,7 @@ app.use('/users', users);
 app.use('/posts', posts);
 app.use('/applications', applications);
 app.use('/companies', companies);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
