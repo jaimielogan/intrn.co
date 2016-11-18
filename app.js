@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');
+var session = require('express-session');
+var passport = require('passport');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,6 +30,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',
   express.static(path.join(__dirname, '/bower_components')));
 app.use(fileUpload());
+app.use(session({
+  secret: "",
+  saveUninitialized: true,
+  resave: false
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
