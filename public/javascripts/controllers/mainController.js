@@ -1,6 +1,7 @@
 var app = angular.module('intrn');
 
-app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', 'Upload', function($scope, posts, $uibModal, $log, Upload) {
+app.controller('mainCtrl', ['$scope', 'posts', '$uibModal', 'Upload', 'auth',
+  function($scope, posts, $uibModal, $log, Upload, auth) {
   $scope.view = {};
   $scope.post = posts.posts;
   $scope.view.viewDetails = [];

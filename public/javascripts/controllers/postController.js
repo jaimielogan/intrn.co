@@ -1,6 +1,17 @@
 var app = angular.module('intrn');
 
-app.controller('postCtrl', ['$scope', 'posts', 'Upload', function($scope, posts, Upload){
+app.controller('postCtrl', ['$scope', '$state', 'posts', 'Upload', 'auth',
+  function($scope, $state, posts, Upload, auth){
+
+  $scope.token = $state.params.token;
+  if ($scope.token) {
+    auth.saveToken($scope.token);
+  } else {
+    if (!auth.isLoggedIn()) {
+      $state.go('home');
+    }
+  }
+
   $scope.view = {};
   $scope.view.date = Date.now();
   $scope.view.viewInfoTip = [];
@@ -113,6 +124,14 @@ app.controller('postCtrl', ['$scope', 'posts', 'Upload', function($scope, posts,
     var skills = $scope.view.requirements;
     var bio = $scope.view.companyInfo;
 
-    posts.addPost($scope.view, file);
+    var currentUser = auth.currentUser();
+    var companyID = currentUser.company_id;
+    posts.addPost($scope.view, file, currentUser).success(function(token){
+      if (token) {
+        auth.logOut();
+        auth.saveToken();
+      }
+      $state.go('home');
+    });
   };
 }]);

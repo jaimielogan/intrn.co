@@ -35,7 +35,7 @@ passport.use(new GoogleStrategy({
 
 module.exports = {
   passport: passport,
-  ensureAuthenticated: function(req, res, next) {
+  isAuthenticated: function(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     } else {

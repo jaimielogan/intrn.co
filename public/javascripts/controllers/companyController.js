@@ -1,7 +1,7 @@
 var app = angular.module('intrn');
 
-app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment', '$uibModal',
-  function($scope, posts, $stateParams, moment, $uibModal){
+app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment', '$uibModal', 'auth',
+  function($scope, posts, $stateParams, moment, $uibModal, auth){
   $scope.view = {};
   $scope.post = posts.posts;
   $scope.postData = [];

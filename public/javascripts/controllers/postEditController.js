@@ -1,7 +1,7 @@
 var app = angular.module('intrn');
 
-app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams', '$state', '$location',
-  function($scope, posts, $stateParams, $state, $location){
+app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams', '$state', '$location', 'auth',
+  function($scope, posts, $stateParams, $state, $location, auth){
 
     $scope.view = {};
     $scope.view.date = Date.now();
@@ -62,7 +62,7 @@ app.controller('postEditCtrl', ['$scope', 'posts', '$stateParams', '$state', '$l
         !$scope.view.companyWebsite || !$scope.view.responsibilities || !$scope.view.requirements || !$scope.view.companyInfo
         ? true : false;
 
-      console.log($scope.formError); 
+      console.log($scope.formError);
 
       if ($scope.roleError || $scope.locationError || $scope.typeError || $scope.formError) return false;
 

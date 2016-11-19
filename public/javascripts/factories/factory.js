@@ -15,8 +15,8 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
     });
   }
 
-  posts.addPost = function(input, file){
-    file.upload = Upload.upload({
+  posts.addPost = function(input, file, currentUser){
+    return file.upload = Upload.upload({
        url: '/posts',
        data: {
          file: file,
@@ -29,12 +29,13 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
          location_id : input.location_id,
          responsibilities : input.responsibilities,
          requirements : input.requirements,
-         companyInfo : input.companyInfo
+         companyInfo : input.companyInfo,
+         currentUser: currentUser
        }
      })
-     .success(function(response){
-       $state.go('home');
-     });
+    //  .success(function(response){
+    //    $state.go('home');
+    //  });
   };
 
   posts.apply = function(input, challengeFile, resumeFile){

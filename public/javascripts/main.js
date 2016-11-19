@@ -15,7 +15,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compi
         templateUrl: '/templates/index.html'
       })
       .state('post', {
-        url: '/post',
+        url: '/post?token',
         controller: 'postCtrl',
         templateUrl: '/templates/post.html'
       })
