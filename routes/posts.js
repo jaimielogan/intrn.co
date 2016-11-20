@@ -76,9 +76,9 @@ router.post('/', function(req, res, next) {
       console.log('currentuser.id', currentUser.id);
       console.log('company id', companyId);
       usersdb.addCompanyToUser(currentUser.id, companyId)
-      return companyId;
+      // return companyId;
       .then(function(companyId) {
-        var companyID = companyId;
+        var companyID = companyId[0];
         console.log('adding company ID here', companyID);
         postdb.addPost(req.body.jobTitle,
           req.body.role_id, req.body.location_id,

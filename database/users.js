@@ -23,6 +23,7 @@ var query = {
     return knex('users')
     .update('company_id', companyID)
     .where('id', userID)
+    .returning('company_id')
   }
 };
 
