@@ -746,3 +746,19 @@ div.invalid {
   text-align: center;
   padding-bottom: 5px;
 }
+
+.logoutBtn {
+  vertical-align: bottom;
+  color: #575757;
+  position: relative;
+  top: 2px;
+  left: -7px;
+}
+
+.logoutBtn:hover {
+  color: #000;
+}
+
+.navbar-form a {
+  text-decoration: none;
+}

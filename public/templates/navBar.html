@@ -17,6 +17,10 @@
           <input type="button" name="name" class="btn btn-default head-btn" value="Company Sign In" />
         </a>
 
+        <a ng-href="/logout" ng-show="isLoggedIn" class="logoutBtn">
+          Logout
+        </a>
+
         <a ng-href="/company/{{currentUser.company_id}}" ng-show="currentUser.company_id">
           <button type="button" class="btn btn-default head-btn">View my posts</button>
         </a>
@@ -24,6 +28,7 @@
         <a ng-href="/post" ng-show="isLoggedIn">
           <button type="button" class="btn btn-default head-btn">Post an internship</button>
         </a>
+
       </div>
     </div>
   </div>

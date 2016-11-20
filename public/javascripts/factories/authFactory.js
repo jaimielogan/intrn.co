@@ -4,6 +4,10 @@ app.factory('auth', ['$http', '$state', '$window',
   function($http, $state, $window) {
     var auth = {};
 
+    auth.clearToken = function() {
+      $window.localStorage.clear();
+    }
+
     auth.saveToken = function(token) {
       $window.localStorage['intrnco'] = token;
     };

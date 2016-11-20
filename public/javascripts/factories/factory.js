@@ -15,7 +15,7 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
     });
   }
 
-  posts.addPost = function(input, file, currentUser){
+  posts.addPost = function(input, file){
     return file.upload = Upload.upload({
        url: '/posts',
        data: {
@@ -30,7 +30,7 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
          responsibilities : input.responsibilities,
          requirements : input.requirements,
          companyInfo : input.companyInfo,
-         currentUser: currentUser
+         currentUser: input.currentUser
        }
      })
     //  .success(function(response){

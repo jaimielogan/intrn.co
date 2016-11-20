@@ -31,14 +31,11 @@ router.post('/view', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
-  console.log(req.body['currentUser[id]']);
-  var companyId = req.body['currentUser[company_id]'];
-  console.log(companyId);
+  var currentUser = JSON.parse(req.body.currentUser)
+  var companyId = currentUser.company_id;
+
   // LEFT OFF HERE!!
-  if (companyId != 'null') {
-    console.log(companyId);
-    console.log('should not be here');
+  if (companyId) {
     postdb.addPost(req.body.jobTitle,
       req.body.role_id, req.body.location_id,
       req.body.type_id, companyId,
@@ -60,15 +57,14 @@ router.post('/', function(req, res, next) {
         });
         challengedb.addChallenge(postId, newFilename)
         .then(function(data) {
-          console.log(companyId);
           var token = jwt.sign({
-            id: req.body['currentUser[id]'],
-            google_id: req.body['currentUser[google_id]'],
-            company_id: companyId,
-            token: req.body['currentUser[token]'],
-            exp: req.body['currentUser[exp]']
+            id: currentUser.id,
+            google_id: currentUser.google_id,
+            company_id: companyID,
+            token: currentUser.token,
+            exp: currentUser.exp
           }, process.env.SECRETKEY);
-          res.json({token: token});
+          res.json(token);
         })
       })
   } else {
@@ -77,7 +73,6 @@ router.post('/', function(req, res, next) {
       return response[0];
     })
     .then(function(companyId) {
-      console.log(companyId);
       var companyID = companyId;
       postdb.addPost(req.body.jobTitle,
         req.body.role_id, req.body.location_id,
@@ -100,15 +95,14 @@ router.post('/', function(req, res, next) {
           });
           challengedb.addChallenge(postId, newFilename)
           .then(function(data) {
-            console.log(companyID);
             var token = jwt.sign({
-              id: req.body['currentUser[id]'],
-              google_id: req.body['currentUser[google_id]'],
+              id: currentUser.id,
+              google_id: currentUser.google_id,
               company_id: companyID,
-              token: req.body['currentUser[token]'],
-              exp: req.body['currentUser[exp]']
+              token: currentUser.token,
+              exp: currentUser.exp
             }, process.env.SECRETKEY);
-            res.json({token: token});
+            res.json(token);
           })
         })
       });

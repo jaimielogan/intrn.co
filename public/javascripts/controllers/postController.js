@@ -126,10 +126,12 @@ app.controller('postCtrl', ['$scope', '$state', 'posts', 'Upload', 'auth',
 
     var currentUser = auth.currentUser();
     var companyID = currentUser.company_id;
-    posts.addPost($scope.view, file, currentUser).success(function(token){
+    $scope.view.currentUser = JSON.stringify(currentUser);
+    posts.addPost($scope.view, file).success(function(token){
+      console.log(token);
       if (token) {
-        auth.logOut();
-        auth.saveToken();
+        auth.clearToken();
+        auth.saveToken(token);
       }
       $state.go('home');
     });
