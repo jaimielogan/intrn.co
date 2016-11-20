@@ -8,18 +8,17 @@ var jwt = require('jsonwebtoken');
 
 var autJWT = expressJWT({secret: process.env.SECRETKEY, userProperty: 'payload'});
 
-
 router.get('/google', auth.passport.authenticate('google', {scope:
   ['https://www.googleapis.com/auth/plus.login',
   'https://www.googleapis.com/auth/plus.profile.emails.read']
 }));
 
 router.get('/google/callback',
-    auth.passport.authenticate('google', {
-        successRedirect: '/auth/setToken',
-        failureRedirect: '/'
-      }
-    )
+  auth.passport.authenticate('google', {
+      successRedirect: '/auth/setToken',
+      failureRedirect: '/'
+    }
+  )
 );
 
 router.get('/setToken', function(req, res, next) {

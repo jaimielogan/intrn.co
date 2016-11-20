@@ -29,6 +29,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compi
         controller: 'postEditCtrl',
         templateUrl: '/templates/post.html'
       })
+      .state('login', {
+        url: '/login',
+        templateUrl: '/templates/login.html'
+      })
 
       $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|fil‌​e|blob|ftp|mailto|ch‌​rome-extension):/);
 

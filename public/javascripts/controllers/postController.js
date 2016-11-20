@@ -15,6 +15,8 @@ app.controller('postCtrl', ['$scope', '$state', 'posts', 'Upload', 'auth',
   $scope.view = {};
   $scope.view.date = Date.now();
   $scope.view.viewInfoTip = [];
+  $scope.view.totalErrors;
+
 
   $scope.toggleInfoTip = function(input){
     $scope.view.viewInfoTip[input] = !$scope.view.viewInfoTip[input];
@@ -128,7 +130,6 @@ app.controller('postCtrl', ['$scope', '$state', 'posts', 'Upload', 'auth',
     var companyID = currentUser.company_id;
     $scope.view.currentUser = JSON.stringify(currentUser);
     posts.addPost($scope.view, file).success(function(token){
-      console.log(token);
       if (token) {
         auth.clearToken();
         auth.saveToken(token);

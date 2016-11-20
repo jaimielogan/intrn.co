@@ -62,6 +62,7 @@ app.controller('CompanyCtrl', ['$scope', 'posts', '$stateParams', 'moment', '$ui
       templateUrl: 'application.html',
       scope: $scope
     });
+    
     posts.getApplicantInfo(applicantID, function(data){
       $scope.applicantInfo = data[0];
       console.log('applicantInfo', $scope.applicantInfo);

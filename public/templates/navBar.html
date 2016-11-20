@@ -13,11 +13,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <div class="navbar-form navbar-right" role="search">
 
-        <a onclick="location.href='/auth/google';" ng-hide="isLoggedIn">
+        <!-- <a onclick="location.href='/auth/google';" ng-hide="isLoggedIn">
           <input type="button" name="name" class="btn btn-default head-btn" value="Company Sign In" />
-        </a>
+        </a> -->
 
-        <a ng-href="/logout" ng-show="isLoggedIn" class="logoutBtn">
+        <input ng-click="toggleCode()" type="button" name="name" class="btn btn-default head-btn" ng-hide="isLoggedIn" value="Company Sign In">
+
+        <a ng-click="logout()" ng-show="isLoggedIn" class="logoutBtn">
           Logout
         </a>
 
@@ -33,3 +35,24 @@
     </div>
   </div>
 </nav>
+
+
+<!-- Code Modal-->
+<script type="text/ng-template" id="code.html"
+  <div class="lightBox">
+    <div class="code">
+      <h1 class="previewHeader">Please enter the access code</h1>
+      <form name="codeForm">
+        <input type="text" name="code" class="form-control codeInput" ng-model="view.code" required>
+        <p ng-show="view.invalidCode" class="invalidCode">Invalid Access Code</p>
+        <p class="codeSnippet">
+          Are you a Colorado company that’s looking for talent? Request a posting access code by <a class="emailCode" href="mailto:support@intrn.co"> sending us an email </a>
+        </p>
+        <div class="uploadApplication">
+          <input type="button" class="edit uploadButton" value="Cancel" ng-click="close()">
+          <input type="button" class="edit uploadButton apply" value="Proceed to Login" ng-click="checkCode()">
+        </div>
+      </form>
+    </div>
+  </div>
+</script>

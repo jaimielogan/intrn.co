@@ -33,9 +33,9 @@ app.factory('posts', ['$http', '$state', 'Upload', function($http, $state, Uploa
          currentUser: input.currentUser
        }
      })
-    //  .success(function(response){
-    //    $state.go('home');
-    //  });
+     .success(function(response){
+       $state.go('home');
+     });
   };
 
   posts.apply = function(input, challengeFile, resumeFile){

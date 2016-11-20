@@ -144,7 +144,7 @@
               <span class="oval pull-right" ng-click="toggleInfoTip(4)" ng-class="{'ovalSelected': view.viewInfoTip[4]}">?</span>
             </h3>
             <input type="button" class="preview-btn form-btn" value="Preview this job posting" ng-click="togglePreview()"/>
-            <input type="button" class="status-btn form-btn" value="10 Fields Left to Publish this Job" disabled/>
+            <input type="button" class="status-btn form-btn" value="{{postForm.jobTitle.$invalid + postForm.companyName.$invalid + postForm.companyIndustry.$invalid + postForm.companyWebsite.$invalid + postForm.responsibilities.$invalid + postForm.requirements.$invalid + postForm.companyInfo.$invalid + !view.filters.role + !view.filters.type + !view.filters.location + !uploadpdf}} Fields Left to Publish this Job" disabled/>
           </div>
         </div>
 

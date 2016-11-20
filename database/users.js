@@ -17,6 +17,12 @@ var query = {
 
   getUserById: function(googleID){
     return knex('users').where('google_id', googleID)
+  },
+
+  addCompanyToUser: function(userID, companyID){
+    return knex('users')
+    .update('company_id', companyID)
+    .where('id', userID)
   }
 };
 

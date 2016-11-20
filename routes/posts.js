@@ -3,6 +3,7 @@ var postdb = require('../database/posts.js');
 var challengedb = require('../database/challenges.js');
 var compdb = require('../database/companies.js');
 var applicantdb = require('../database/applicants.js');
+var usersdb = require('../database/users.js');
 var router = express.Router();
 
 var expressJWT = require('express-jwt');
@@ -33,8 +34,6 @@ router.post('/view', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var currentUser = JSON.parse(req.body.currentUser)
   var companyId = currentUser.company_id;
-
-  // LEFT OFF HERE!!
   if (companyId) {
     postdb.addPost(req.body.jobTitle,
       req.body.role_id, req.body.location_id,
@@ -60,7 +59,7 @@ router.post('/', function(req, res, next) {
           var token = jwt.sign({
             id: currentUser.id,
             google_id: currentUser.google_id,
-            company_id: companyID,
+            company_id: companyId,
             token: currentUser.token,
             exp: currentUser.exp
           }, process.env.SECRETKEY);
@@ -72,8 +71,14 @@ router.post('/', function(req, res, next) {
     .then(function(response){
       return response[0];
     })
+    .then(function(companyId){
+      console.log('currentuser.id', currentUser.id);
+      console.log('company id', companyId);
+      usersdb.addCompanyToUser(currentUser.id, companyId)
+    })
     .then(function(companyId) {
       var companyID = companyId;
+      console.log(companyID);
       postdb.addPost(req.body.jobTitle,
         req.body.role_id, req.body.location_id,
         req.body.type_id, companyID,
