@@ -34,6 +34,7 @@ router.post('/view', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var currentUser = JSON.parse(req.body.currentUser)
   var companyId = currentUser.company_id;
+  console.log(companyId);
   if (companyId) {
     postdb.addPost(req.body.jobTitle,
       req.body.role_id, req.body.location_id,
@@ -75,6 +76,7 @@ router.post('/', function(req, res, next) {
       console.log('currentuser.id', currentUser.id);
       console.log('company id', companyId);
       usersdb.addCompanyToUser(currentUser.id, companyId)
+      return companyId;
     })
     .then(function(companyId) {
       var companyID = companyId;
