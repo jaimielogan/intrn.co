@@ -76,43 +76,43 @@ router.post('/', function(req, res, next) {
       console.log('currentuser.id', currentUser.id);
       console.log('company id', companyId);
       usersdb.addCompanyToUser(currentUser.id, companyId)
-      return companyId;
-    })
-    .then(function(companyId) {
-      var companyID = companyId;
-      console.log(companyID);
-      postdb.addPost(req.body.jobTitle,
-        req.body.role_id, req.body.location_id,
-        req.body.type_id, companyID,
-        req.body.responsibilities, req.body.requirements,
-        req.body.companyInfo)
-        .then(function(postId) {
-          return postId[0];
-        })
-        .then(function(postId) {
-          var pdfFile = req.files.file;
-          var pdfFileName = req.files.file.name;
-          var date = Date.now();
-          var newFilename = date + '-' + pdfFileName;
-          var challengeLink = __dirname + '/../public/pdfs/challenges/' + newFilename;
-          pdfFile.mv(challengeLink, function(err) {
-            if (err) {
-              res.status(500).send(err);
-            }
-          });
-          challengedb.addChallenge(postId, newFilename)
-          .then(function(data) {
-            var token = jwt.sign({
-              id: currentUser.id,
-              google_id: currentUser.google_id,
-              company_id: companyID,
-              token: currentUser.token,
-              exp: currentUser.exp
-            }, process.env.SECRETKEY);
-            res.json(token);
+      // return companyId;
+      .then(function(companyId) {
+        var companyID = companyId;
+        console.log('adding company ID here', companyID);
+        postdb.addPost(req.body.jobTitle,
+          req.body.role_id, req.body.location_id,
+          req.body.type_id, companyID,
+          req.body.responsibilities, req.body.requirements,
+          req.body.companyInfo)
+          .then(function(postId) {
+            return postId[0];
           })
-        })
-      });
+          .then(function(postId) {
+            var pdfFile = req.files.file;
+            var pdfFileName = req.files.file.name;
+            var date = Date.now();
+            var newFilename = date + '-' + pdfFileName;
+            var challengeLink = __dirname + '/../public/pdfs/challenges/' + newFilename;
+            pdfFile.mv(challengeLink, function(err) {
+              if (err) {
+                res.status(500).send(err);
+              }
+            });
+            challengedb.addChallenge(postId, newFilename)
+            .then(function(data) {
+              var token = jwt.sign({
+                id: currentUser.id,
+                google_id: currentUser.google_id,
+                company_id: companyID,
+                token: currentUser.token,
+                exp: currentUser.exp
+              }, process.env.SECRETKEY);
+              res.json(token);
+            })
+          })
+        });
+    })
   }
 });
 
