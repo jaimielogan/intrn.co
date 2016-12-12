@@ -69,10 +69,10 @@ router.post('/', function(req, res, next) {
       })
   } else {
     compdb.addCompany(req.body.companyName, req.body.companyIndustry, req.body.companyWebsite)
-    .then(function(response){
+    .then(function(response) {
       return response[0];
     })
-    .then(function(companyId){
+    .then(function(companyId) {
       console.log('currentuser.id', currentUser.id);
       console.log('company id', companyId);
       usersdb.addCompanyToUser(currentUser.id, companyId)
