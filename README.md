@@ -7,10 +7,11 @@ Updates Needed:
 4. If there are no applicants on a post, render "There are no applicants" rather than leaving that section blank  
 5. Add in expiration functionality  
 6. Transferring account ownership  
-7. Confirmation Dialog  
+7. Update Logo to .svg file  
+8. Confirmation Dialog  
   - Application success  
   - Deleting  
-8. Update Logo to .svg file  
+
 
 Bugs:  
 1. Initial sign in does not work on first attempt  
