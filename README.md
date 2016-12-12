@@ -8,8 +8,8 @@ Updates Needed:
 5. Add in expiration functionality  
 6. Transferring account ownership  
 7. Confirmation Dialog  
-..* Application success  
-..* Deleting  
+  - Application success  
+  - Deleting  
 8. Update Logo to .svg file  
 
 Bugs:  
